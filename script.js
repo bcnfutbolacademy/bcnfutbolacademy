@@ -579,56 +579,56 @@ function showFeatureWarning(feature) {
                 return calendarSection;
             }
             
-            // Placeholder function for showBookingCalendar (implementation for step 3)
-            function showBookingCalendar(transactionId) {
-                console.log("Showing booking calendar for transaction:", transactionId);
+// Fixed showBookingCalendar function - REPLACE the entire function with this
+function showBookingCalendar(transactionId) {
+    console.log("Showing booking calendar for transaction:", transactionId);
+    
+    try {
+        // Get the booking data
+        const bookingData = localStorage.getItem('bcnBooking_' + transactionId);
+        if (bookingData) {
+            const bookingDetails = JSON.parse(bookingData);
+            console.log("Booking details:", bookingDetails);
+            
+            // Create or get the calendar container
+            let calendarContainer = document.getElementById('google-calendar-embed');
+            if (!calendarContainer) {
+                // If the calendar section doesn't exist yet, create it
+                const calendarSection = createCalendarSection(transactionId);
+                calendarContainer = document.getElementById('google-calendar-embed');
+            }
+            
+            if (calendarContainer) {
+                // Clear any existing content
+                calendarContainer.innerHTML = '';
                 
-                try {
-                    // Get the booking data
-                    const bookingData = localStorage.getItem('bcnBooking_' + transactionId);
-                    if (bookingData) {
-                        const bookingDetails = JSON.parse(bookingData);
-                        console.log("Booking details:", bookingDetails);
-                        
-                        // Create or get the calendar container
-                        let calendarContainer = document.getElementById('google-calendar-embed');
-                        if (!calendarContainer) {
-                            // If the calendar section doesn't exist yet, create it
-                            const calendarSection = createCalendarSection(transactionId);
-                            calendarContainer = document.getElementById('google-calendar-embed');
-                        }
-                        
-                        if (calendarContainer) {
-                            // Clear any existing content
-                            calendarContainer.innerHTML = '';
-                            
-                            // Add a loading indicator
-                            const loadingIndicator = document.createElement('div');
-                            loadingIndicator.className = 'text-center py-8';
-                            loadingIndicator.innerHTML = '<p class="text-gray-700 mb-4">Loading calendar...</p>' +
-                                                         '<div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-green-700"></div>';
-                            calendarContainer.appendChild(loadingIndicator);
-                            
-                            // Create a container for booking details
-                            const bookingInfoContainer = document.createElement('div');
-                            bookingInfoContainer.className = 'bg-green-100 p-4 rounded-lg mb-6';
-                            bookingInfoContainer.innerHTML = `
-                                <h3 class="text-xl font-bold mb-3 text-green-700">Booking Information</h3>
-                                <p class="text-gray-700"><strong>Name:</strong> ${bookingDetails.name}</p>
-                                <p class="text-gray-700"><strong>Package:</strong> ${getPackageDisplayName(bookingDetails.package)}</p>
-                                <p class="text-gray-700"><strong>Transaction ID:</strong> ${bookingDetails.transactionId}</p>
-                                <p class="text-gray-700 mt-4">Please select your preferred time slots from the calendar below.</p>
-                            `;
-                            
-                            // After a short delay (to show loading indicator), embed the Google Calendar
-                            setTimeout(() => {
-                                // Clear the loading indicator
-                                calendarContainer.innerHTML = '';
-                                
-                                // Add booking info
-                                calendarContainer.appendChild(bookingInfoContainer);
+                // Add a loading indicator
+                const loadingIndicator = document.createElement('div');
+                loadingIndicator.className = 'text-center py-8';
+                loadingIndicator.innerHTML = '<p class="text-gray-700 mb-4">Loading calendar...</p>' +
+                                           '<div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-green-700"></div>';
+                calendarContainer.appendChild(loadingIndicator);
+                
+                // Create a container for booking details
+                const bookingInfoContainer = document.createElement('div');
+                bookingInfoContainer.className = 'bg-green-100 p-4 rounded-lg mb-6';
+                bookingInfoContainer.innerHTML = `
+                    <h3 class="text-xl font-bold mb-3 text-green-700">Booking Information</h3>
+                    <p class="text-gray-700"><strong>Name:</strong> ${bookingDetails.name}</p>
+                    <p class="text-gray-700"><strong>Package:</strong> ${getPackageDisplayName(bookingDetails.package)}</p>
+                    <p class="text-gray-700"><strong>Transaction ID:</strong> ${bookingDetails.transactionId}</p>
+                    <p class="text-gray-700 mt-4">Please select your preferred time slots from the calendar below.</p>
+                `;
+                
+                // After a short delay (to show loading indicator), embed the Google Calendar
+                setTimeout(() => {
+                    // Clear the loading indicator
+                    calendarContainer.innerHTML = '';
+                    
+                    // Add booking info
+                    calendarContainer.appendChild(bookingInfoContainer);
 
- // Check iframe and postMessage support for calendar functionality
+                    // Check iframe and postMessage support for calendar functionality
                     const calendarFeaturesSupported = (function() {
                         const features = {
                             iframe: true,
@@ -666,130 +666,167 @@ function showFeatureWarning(feature) {
                         // Insert the warning before the calendar
                         calendarContainer.appendChild(calendarWarning);
                     }
-                    // ADD THIS CODE HERE - END
                     
                     // Create the iframe for Google Calendar
                     const calendarFrame = document.createElement('iframe');
                     calendarFrame.src = getCalendarUrl(bookingDetails);
-                    // ... (rest of the iframe configuration) ...
-
-                                // Create the iframe for Google Calendar
-                               const calendarFrame = document.createElement('iframe');
-calendarFrame.src = getCalendarUrl(bookingDetails);
-calendarFrame.style.width = '100%';
-calendarFrame.style.height = '600px';
-calendarFrame.style.border = '0';
-calendarFrame.frameBorder = '0';
-calendarFrame.className = 'rounded-lg shadow-md';
-calendarFrame.title = 'BCN Futbol Academy Appointment Scheduling';
+                    calendarFrame.style.width = '100%';
+                    calendarFrame.style.height = '600px';
+                    calendarFrame.style.border = '0';
+                    calendarFrame.frameBorder = '0';
+                    calendarFrame.className = 'rounded-lg shadow-md';
+                    calendarFrame.title = 'BCN Futbol Academy Appointment Scheduling';
+                    calendarFrame.id = 'calendar-iframe';
+                    
+                    // Add responsive styles for mobile
+                    const mediaQuery = `
+                        @media (max-width: 768px) {
+                            #calendar-iframe {
+                                height: 400px;
+                            }
+                        }
+                        @media (max-width: 480px) {
+                            #calendar-iframe {
+                                height: 350px;
+                            }
+                        }
+                    `;
+                    
+                    const style = document.createElement('style');
+                    style.innerHTML = mediaQuery;
+                    document.head.appendChild(style);
+                    
+                    // Add event listener for when the calendar loads
+                    calendarFrame.onload = function() {
+                        console.log("Appointment scheduling iframe loaded");
+                        // Remove any loading classes when the iframe is loaded
+                        calendarFrame.classList.remove('opacity-50');
+                        
+                        // Clear the loading timeout if calendar loads successfully
+                        if (window.calendarLoadingTimeout) {
+                            clearTimeout(window.calendarLoadingTimeout);
+                        }
+                    };
+                    
+                    // Set a timeout to check if the calendar fails to load
+                    window.calendarLoadingTimeout = setTimeout(() => {
+                        // Create a fallback message
+                        const fallbackMessage = document.createElement('div');
+                        fallbackMessage.className = 'p-4 bg-yellow-100 rounded-lg border border-yellow-300 text-center';
+                        fallbackMessage.innerHTML = `
+                            <p class="text-yellow-800 font-bold mb-2">Unable to load appointment scheduler</p>
+                            <p class="text-gray-700 mb-3">The booking calendar could not be loaded at this time. Please try one of the following:</p>
+                            <ul class="text-left list-disc pl-5 mb-4 text-gray-700">
+                                <li>Refresh the page and try again</li>
+                                <li>Try using a different browser</li>
+                                <li>Contact us directly to schedule your sessions</li>
+                            </ul>
+                            <a href="${getCalendarUrl(bookingDetails)}" target="_blank" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">
+                                Open Scheduler in New Tab
+                            </a>
+                        `;
+                        
+                        // Check if the iframe failed to load properly and replace it with the fallback message
+                        if (calendarFrame.classList.contains('opacity-50')) {
+                            calendarFrame.parentNode.replaceChild(fallbackMessage, calendarFrame);
+                        }
+                    }, 10000); // 10 second timeout
+                    
+                    // Append the iframe to the container
+                    calendarContainer.appendChild(calendarFrame);
+                    
+                    // Add instructions below the calendar
+                    const instructions = document.createElement('div');
+                    instructions.className = 'mt-6 p-4 bg-gray-100 rounded-lg';
+                    instructions.innerHTML = `
+                        <h4 class="font-bold text-gray-800 mb-2">Booking Instructions</h4>
+                        <p class="text-gray-700 mb-3">Thank you for your payment! To schedule your sessions, please follow these steps:</p>
+                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+                            <li>Select the type of session you want to book from the dropdown menu.</li>
+                            <li>Choose an available date and time slot from the calendar above.</li>
+                            <li>Fill in your details to confirm the appointment.</li>
+                            <li>You'll receive an email confirmation once your appointment is scheduled.</li>
+                        </ol>
+                        <div class="mt-4 p-3 bg-green-100 rounded-lg">
+                            <p class="font-bold text-green-800 mb-2">Need help with scheduling?</p>
+                            <p class="text-gray-700">
+                                <i class="fas fa-envelope mr-2 text-green-700" aria-hidden="true"></i>
+                                <a href="mailto:bcnfutbolacademy@gmail.com" class="text-green-700 hover:underline">bcnfutbolacademy@gmail.com</a>
+                            </p>
+                            <p class="text-gray-700">
+                                <i class="fas fa-phone mr-2 text-green-700" aria-hidden="true"></i>
+                                <a href="tel:+18167307552" class="text-green-700 hover:underline">(816) 730-7552</a>
+                            </p>
+                            <p class="mt-2 text-sm text-gray-600">Please include your name, package selected, and transaction ID: <span class="font-mono bg-gray-200 px-1 py-0.5 rounded">${bookingDetails.transactionId}</span></p>
+                        </div>
+                    `;
+                    calendarContainer.appendChild(instructions);
+                    
+                    // Add message event listener to detect appointment confirmations
+                    window.addEventListener('message', function(event) {
+                        // Check if the message is from Google Calendar
+                        if (event.origin.includes('calendar.google.com')) {
+                            try {
+                                // Try to parse the message data
+                                const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
                                 
-                                // Add responsive styles for mobile
-                                const mediaQuery = `
-                                    @media (max-width: 768px) {
-                                        #calendar-iframe {
-                                            height: 400px;
-                                        }
-                                    }
-                                    @media (max-width: 480px) {
-                                        #calendar-iframe {
-                                            height: 350px;
-                                        }
-                                    }
-                                `;
-                                
-                                const style = document.createElement('style');
-                                style.innerHTML = mediaQuery;
-                                document.head.appendChild(style);
-                                calendarFrame.id = 'calendar-iframe';
-                                
-                                // Add event listener for when the calendar loads
-                                calendarFrame.onload = function() {
-                                    console.log("Appointment scheduling iframe loaded");
-                                    // Remove any loading classes when the iframe is loaded
-                                    calendarFrame.classList.remove('opacity-50');
+                                // Check if this is an appointment confirmation message
+                                if (data && (data.action === 'appointmentCreated' || 
+                                    (data.message && data.message.includes('appointment')))) {
                                     
-                                    // Clear the loading timeout if calendar loads successfully
-                                    if (window.calendarLoadingTimeout) {
-                                        clearTimeout(window.calendarLoadingTimeout);
-                                    }
-                                };
-                                
-                                // Set a timeout to check if the calendar fails to load
-                                window.calendarLoadingTimeout = setTimeout(() => {
-    // Create a fallback message
-    const fallbackMessage = document.createElement('div');
-    fallbackMessage.className = 'p-4 bg-yellow-100 rounded-lg border border-yellow-300 text-center';
-    fallbackMessage.innerHTML = `
-        <p class="text-yellow-800 font-bold mb-2">Unable to load appointment scheduler</p>
-        <p class="text-gray-700 mb-3">The booking calendar could not be loaded at this time. Please try one of the following:</p>
-        <ul class="text-left list-disc pl-5 mb-4 text-gray-700">
-            <li>Refresh the page and try again</li>
-            <li>Try using a different browser</li>
-            <li>Contact us directly to schedule your sessions</li>
-        </ul>
-        <a href="${getCalendarUrl(bookingDetails)}" target="_blank" class="inline-block bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">
-            Open Scheduler in New Tab
-        </a>
+                                    console.log('Appointment confirmation detected:', data);
+                                    
+                                    // Show confirmation message to user
+                                    showConfirmationMessage(bookingDetails);
+                                }
+                            } catch (error) {
+                                console.error('Error processing appointment message:', error);
+                            }
+                        }
+                    });
+                    
+                }, 2000); // 2 second delay to show loading indicator
+            }
+        }
+    } catch (error) {
+        console.error("Error showing booking calendar:", error);
+    }
+}
+
+// Function to show confirmation message to user
+function showConfirmationMessage(details) {
+    // Create confirmation message element
+    const confirmationMessage = document.createElement('div');
+    confirmationMessage.className = 'mt-6 p-6 bg-green-100 rounded-lg text-center';
+    confirmationMessage.innerHTML = `
+        <div class="text-5xl text-green-700 mb-4">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-green-700 mb-2">Booking Confirmed!</h3>
+        <p class="text-gray-700 mb-4">Thank you for booking with BCN Futbol Academy!</p>
+        <p class="text-gray-700">You will receive a confirmation email shortly.</p>
+        <p class="text-gray-700 mt-4">Your transaction ID: <span class="font-mono bg-white px-2 py-1 rounded">${details.transactionId}</span></p>
+        <div class="mt-6 p-4 bg-white rounded-lg">
+            <h4 class="font-bold text-gray-800 mb-2">What's Next?</h4>
+            <ol class="text-left list-decimal pl-5 space-y-2 text-gray-700">
+                <li>Save your confirmation email for reference</li>
+                <li>Prepare for your training session by bringing appropriate gear</li>
+                <li>Arrive 10 minutes before your scheduled time</li>
+                <li>Contact us if you need to reschedule or have any questions</li>
+            </ol>
+        </div>
     `;
     
-    // Check if the iframe failed to load properly and replace it with the fallback message
-    if (calendarFrame.classList.contains('opacity-50')) {
-        calendarFrame.parentNode.replaceChild(fallbackMessage, calendarFrame);
+    // Find the calendar container and add the confirmation message
+    const calendarContainer = document.getElementById('google-calendar-embed');
+    if (calendarContainer) {
+        // Add the confirmation message after the calendar
+        calendarContainer.parentNode.appendChild(confirmationMessage);
+        
+        // Scroll to the confirmation message
+        confirmationMessage.scrollIntoView({ behavior: 'smooth' });
     }
-}, 10000); // 10 second timeout
-                                
-                                // Append the iframe to the container
-                                calendarContainer.appendChild(calendarFrame);
-                                
-                                // Add instructions below the calendar
-                                const instructions = document.createElement('div');
-                                instructions.className = 'mt-6 p-4 bg-gray-100 rounded-lg';
-                                instructions.innerHTML = `
-                                    <h4 class="font-bold text-gray-800 mb-2">Booking Instructions</h4>
-                                    <p class="text-gray-700 mb-3">Thank you for your payment! To schedule your sessions, please follow these steps:</p>
-                                    <ol class="list-decimal pl-5 space-y-2 text-gray-700">
-                                        <li>Select the type of session you want to book from the dropdown menu.</li>
-                                        <li>Choose an available date and time slot from the calendar above.</li>
-                                        <li>Fill in your details to confirm the appointment.</li>
-                                        <li>You'll receive an email confirmation once your appointment is scheduled.</li>
-                                    </ol>
-                                    <div class="mt-4 p-3 bg-green-100 rounded-lg">
-                                        <p class="font-bold text-green-800 mb-2">Need help with scheduling?</p>
-                                        <p class="text-gray-700">
-                                            <i class="fas fa-envelope mr-2 text-green-700" aria-hidden="true"></i>
-                                            <a href="mailto:bcnfutbolacademy@gmail.com" class="text-green-700 hover:underline">bcnfutbolacademy@gmail.com</a>
-                                        </p>
-                                        <p class="text-gray-700">
-                                            <i class="fas fa-phone mr-2 text-green-700" aria-hidden="true"></i>
-                                            <a href="tel:+18167307552" class="text-green-700 hover:underline">(816) 730-7552</a>
-                                        </p>
-                                        <p class="mt-2 text-sm text-gray-600">Please include your name, package selected, and transaction ID: <span class="font-mono bg-gray-200 px-1 py-0.5 rounded">${bookingDetails.transactionId}</span></p>
-                                    </div>
-                                `;
-                                calendarContainer.appendChild(instructions);
-                                
-                                // Add message event listener to detect appointment confirmations
-window.addEventListener('message', function(event) {
-    // Check if the message is from Google Calendar
-    if (event.origin.includes('calendar.google.com')) {
-        try {
-            // Try to parse the message data
-            const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-            
-            // Check if this is an appointment confirmation message
-            if (data && (data.action === 'appointmentCreated' || 
-                (data.message && data.message.includes('appointment')))) {
-                
-                console.log('Appointment confirmation detected:', data);
-                
-                // Show confirmation message to user
-                showConfirmationMessage(bookingDetails);
-            }
-        } catch (error) {
-            console.error('Error processing appointment message:', error);
-        }
-    }
-});
+}
                                 
 // Function to show confirmation message to user
 function showConfirmationMessage(details) {
