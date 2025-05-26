@@ -774,3 +774,111 @@
             </div>
         </div>
     </footer>
+<!-- JavaScript -->
+    <script>
+        // Wait for DOM to be fully loaded before executing any JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM content loaded - initializing scripts');
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            if(mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    const isExpanded = mobileMenu.classList.contains('hidden') ? false : true;
+                    mobileMenu.classList.toggle('hidden');
+                    // Update ARIA attributes
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    
+                    // Prevent scrolling when menu is open
+                    if (!isExpanded) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // Close mobile menu when clicking on a link
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.classList.contains('hidden') && 
+                        !mobileMenu.contains(event.target) && 
+                        !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
+            // Tab functionality for pricing section - THIS IS THE KEY PART!
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const pricingContents = document.querySelectorAll('.pricing-content');
+            
+            console.log('Found tab buttons:', tabButtons.length);
+            console.log('Found pricing contents:', pricingContents.length);
+            
+            if(tabButtons.length > 0) {
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        console.log('Tab clicked:', this.id);
+                        
+                        // Get the tab id from the button id
+                        const tabId = this.id.replace('tab-', '');
+                        console.log('Tab ID:', tabId);
+                        
+                        // Hide all pricing contents
+                        pricingContents.forEach(content => {
+                            content.classList.add('hidden');
+                            content.setAttribute('aria-hidden', 'true');
+                        });
+                        
+                        // Show the selected content
+                        const selectedContent = document.getElementById(`pricing-${tabId}`);
+                        console.log('Selected content:', selectedContent);
+                        
+                        if(selectedContent) {
+                            selectedContent.classList.remove('hidden');
+                            selectedContent.setAttribute('aria-hidden', 'false');
+                        }
+                        
+                        // Update active tab styling
+                        tabButtons.forEach(btn => {
+                            btn.classList.remove('bg-green-700', 'text-white');
+                            btn.classList.add('bg-gray-800', 'text-gray-300');
+                            btn.setAttribute('aria-pressed', 'false');
+                        });
+                        
+                        this.classList.remove('bg-gray-800', 'text-gray-300');
+                        this.classList.add('bg-green-700', 'text-white');
+                        this.setAttribute('aria-pressed', 'true');
+                    });
+                });
+            }
+            
+            // Smooth scrolling for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
