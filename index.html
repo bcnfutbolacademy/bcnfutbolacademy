@@ -869,137 +869,357 @@
                     });
                 });
             }
-            // Enhanced Book Now button functionality with scheduling redirect
-const bookNowBtn = document.getElementById('book-now-btn');
-if (bookNowBtn) {
-    bookNowBtn.addEventListener('click', function(e) {
-        // Get form data for validation
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const phoneInput = document.getElementById('phone');
-        const packageSelect = document.getElementById('package');
-        
-        // Basic validation
-        if (!nameInput.value) {
-            alert('Please enter your name.');
-            nameInput.focus();
-            return;
-        }
-        
-        if (!emailInput.value || !emailInput.checkValidity()) {
-            alert('Please enter a valid email address.');
-            emailInput.focus();
-            return;
-        }
-        
-        if (!phoneInput.value || !phoneInput.checkValidity()) {
-            alert('Please enter a valid phone number.');
-            phoneInput.focus();
-            return;
-        }
-        
-        if (!packageSelect.value) {
-            alert('Please select a package.');
-            packageSelect.focus();
-            return;
-        }
-        
-        // Generate unique transaction ID
-        const transactionId = generateTransactionId();
-        
-        // Store booking details
-        const bookingDetails = {
-            name: nameInput.value,
-            email: emailInput.value,
-            phone: phoneInput.value,
-            package: packageSelect.value,
-            transactionId: transactionId,
-            timestamp: new Date().toISOString()
+/ Enhanced Book Now button functionality with Venmo backup - FULLY CORRECTED VERSION
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Function to generate unique transaction ID
+    function generateTransactionId() {
+        var timestamp = new Date().getTime();
+        var randomStr = Math.random().toString(36).substring(2, 8);
+        return 'BCN-' + timestamp + '-' + randomStr;
+    }
+
+    // Function to get package price for display
+    function getPackagePrice(packageId) {
+        var priceMap = {
+            'individual-4': '$240',
+            'individual-8': '$440',
+            'individual-12': '$600',
+            'individual-16': '$720',
+            'group-2': '$50 per player',
+            'group-3': '$45 per player',
+            'group-4': '$40 per player',
+            'group-5': '$35 per player',
+            'summer-payg': '$50',
+            'summer-mini': '$200',
+            'summer-half': '$250',
+            'summer-flex': '$375',
+            'summer-full': '$480'
         };
         
-        // Store in localStorage if available
-        try {
-            localStorage.setItem('bcnBooking_' + transactionId, JSON.stringify(bookingDetails));
-        } catch (e) {
-            console.warn('Could not save booking details:', e);
-        }
-        
-        // Show payment instructions
-        alert(`Thank you ${bookingDetails.name}!\n\n1. You'll be redirected to Venmo for payment\n2. After completing payment, you'll be taken to schedule your sessions\n3. Please keep this information: Transaction ID: ${transactionId}`);
-        
-        // Open Venmo for payment
-        window.open("https://www.venmo.com/u/bcnfutbolacademy", "_blank");
-        
-        // Show the "I've completed payment" button
-        showPaymentCompleteButton(transactionId, bookingDetails);
-    });
-}
-
-// Function to generate unique transaction ID
-function generateTransactionId() {
-    const timestamp = new Date().getTime();
-    const randomStr = Math.random().toString(36).substring(2, 8);
-    return `BCN-${timestamp}-${randomStr}`;
-}
-
-// Function to show "I've completed payment" button
-function showPaymentCompleteButton(transactionId, bookingDetails) {
-    // Create payment confirmation section
-    const paymentSection = document.createElement('div');
-    paymentSection.id = 'payment-confirmation';
-    paymentSection.className = 'mt-6 p-6 bg-blue-50 rounded-lg border-2 border-blue-200';
-    
-    paymentSection.innerHTML = `
-        <h3 class="text-xl font-bold text-blue-800 mb-4">💳 Payment Step</h3>
-        <p class="text-gray-700 mb-4">
-            <strong>Next Steps:</strong><br>
-            1. Complete your payment on the Venmo tab that just opened<br>
-            2. Return to this page and click the button below<br>
-            3. You'll be directed to schedule your sessions
-        </p>
-        <p class="text-sm text-gray-600 mb-4">
-            <strong>Your Transaction ID:</strong> <span class="font-mono bg-gray-200 px-2 py-1 rounded">${transactionId}</span>
-        </p>
-        <button id="payment-complete-btn" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg">
-            ✅ I've Completed Payment - Schedule My Sessions
-        </button>
-    `;
-    
-    // Add the section after the booking form
-    const bookingForm = document.getElementById('booking-form');
-    if (bookingForm) {
-        bookingForm.parentNode.insertBefore(paymentSection, bookingForm.nextSibling);
-        // Hide the original form
-        bookingForm.style.display = 'none';
+        return priceMap[packageId] || 'Contact for pricing';
     }
-    
-    // Add click handler for the completion button
-    const completeBtn = document.getElementById('payment-complete-btn');
-    completeBtn.addEventListener('click', function() {
+
+    // Function to get display-friendly package names
+    function getPackageDisplayName(packageId) {
+        var packageMap = {
+            'individual-4': '4 Individual Sessions ($240)',
+            'individual-8': '8 Individual Sessions ($440)', 
+            'individual-12': '12 Individual Sessions ($600)',
+            'individual-16': '16 Individual Sessions ($720)',
+            'group-2': '2 Players Group Session ($50 each)',
+            'group-3': '3 Players Group Session ($45 each)',
+            'group-4': '4 Players Group Session ($40 each)',
+            'group-5': '5+ Players Group Session ($35 each)',
+            'summer-payg': 'Summer Pay-As-You-Go (1 Session - $50)',
+            'summer-mini': 'Summer Mini Pack - 4 Sessions ($200)',
+            'summer-half': 'Summer Half Pack - 8 Sessions ($250)',
+            'summer-flex': 'Summer Flex Pack - 12 Sessions ($375)',
+            'summer-full': 'Summer Full Pack - 16 Sessions ($480)'
+        };
+        
+        return packageMap[packageId] || packageId;
+    }
+
+    // Function to get the correct scheduling URL based on package type
+    function getSchedulingUrl(packageType) {
+        if (packageType.indexOf('individual-') === 0) {
+            return "https://calendar.app.google/DKyrC3Hd16Ybw5KM6";
+        } else if (packageType.indexOf('group-') === 0) {
+            return "https://calendar.app.google/AA77AGJFcHw2V1hWA";
+        } else if (packageType.indexOf('summer-') === 0) {
+            return "https://calendar.app.google/Y2rSBJ1vUiCaDv819";
+        } else {
+            return "https://calendar.app.google/DKyrC3Hd16Ybw5KM6";
+        }
+    }
+
+    // Function to show popup blocked warning
+    function showPopupBlockedWarning() {
+        var instructionsDiv = document.getElementById('venmo-instructions');
+        if (instructionsDiv) {
+            instructionsDiv.className = 'bg-red-50 border-l-4 border-red-400 p-4 mb-6';
+            var warningContent = '';
+            warningContent += '<div class="flex items-start">';
+            warningContent += '<div class="flex-shrink-0"><i class="fas fa-exclamation-triangle text-red-600 text-xl"></i></div>';
+            warningContent += '<div class="ml-3">';
+            warningContent += '<h4 class="text-lg font-bold text-red-800 mb-2">🚫 Popup Blocked</h4>';
+            warningContent += '<p class="text-red-700 mb-3">Your browser blocked the automatic Venmo redirect. Please click the blue "Open Venmo to Pay" button below to complete your payment.</p>';
+            warningContent += '<p class="text-sm text-red-600">💡 <strong>Tip:</strong> Allow popups for this site to make future bookings smoother!</p>';
+            warningContent += '</div></div>';
+            instructionsDiv.innerHTML = warningContent;
+        }
+    }
+
+    // Function to show Venmo opened successfully message
+    function showVenmoOpenedMessage() {
+        var instructionsDiv = document.getElementById('venmo-instructions');
+        if (instructionsDiv) {
+            instructionsDiv.className = 'bg-green-50 border-l-4 border-green-400 p-4 mb-6';
+            var successContent = '';
+            successContent += '<div class="flex items-start">';
+            successContent += '<div class="flex-shrink-0"><i class="fas fa-check-circle text-green-600 text-xl"></i></div>';
+            successContent += '<div class="ml-3">';
+            successContent += '<h4 class="text-lg font-bold text-green-800 mb-2">✅ Venmo Opened!</h4>';
+            successContent += '<p class="text-green-700 mb-3">Great! Venmo should have opened in a new tab. Complete your payment there, then return here to schedule your sessions.</p>';
+            successContent += '<p class="text-sm text-green-600">If Venmo didn\'t open, use the blue button below.</p>';
+            successContent += '</div></div>';
+            instructionsDiv.innerHTML = successContent;
+        }
+    }
+
+    // Function to attempt automatic Venmo redirect
+    function attemptVenmoRedirect() {
+        try {
+            // Try to open Venmo in a new tab
+            var venmoWindow = window.open("https://www.venmo.com/u/bcnfutbolacademy", "_blank");
+            
+            // Check if popup was blocked after a short delay
+            setTimeout(function() {
+                if (!venmoWindow || venmoWindow.closed || typeof venmoWindow.closed === 'undefined') {
+                    // Popup was blocked, show the manual link message
+                    showPopupBlockedWarning();
+                } else {
+                    // Popup opened successfully, show success message
+                    showVenmoOpenedMessage();
+                }
+            }, 1000);
+            
+        } catch (error) {
+            console.error('Error opening Venmo:', error);
+            // Show manual link if automatic opening fails
+            showPopupBlockedWarning();
+        }
+    }
+
+    // Function to show scheduling instructions
+    function showSchedulingInstructions(bookingDetails, schedulingUrl) {
+        var instructionsSection = document.createElement('div');
+        instructionsSection.className = 'mt-6 p-6 bg-blue-50 rounded-lg border-2 border-blue-200';
+        
+        var instructionsContent = '';
+        instructionsContent += '<h3 class="text-xl font-bold text-blue-800 mb-4">📅 Next: Schedule Your Sessions</h3>';
+        instructionsContent += '<div class="mb-4">';
+        instructionsContent += '<p class="text-gray-700 mb-2"><strong>Your booking details:</strong></p>';
+        instructionsContent += '<ul class="list-disc pl-5 text-gray-700">';
+        instructionsContent += '<li>Name: ' + bookingDetails.name + '</li>';
+        instructionsContent += '<li>Package: ' + getPackageDisplayName(bookingDetails.package) + '</li>';
+        instructionsContent += '<li>Transaction ID: ' + bookingDetails.transactionId + '</li>';
+        instructionsContent += '</ul></div>';
+        
+        instructionsContent += '<div class="flex flex-col sm:flex-row gap-3">';
+        instructionsContent += '<a href="' + schedulingUrl + '" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-center transition duration-300">';
+        instructionsContent += '🔗 Open Scheduling Again</a>';
+        instructionsContent += '<a href="mailto:bcnfutbolacademy@gmail.com?subject=Booking%20Assistance%20-%20' + bookingDetails.transactionId + '" ';
+        instructionsContent += 'class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full text-center transition duration-300">';
+        instructionsContent += '📧 Need Help? Email Us</a>';
+        instructionsContent += '</div>';
+        
+        instructionsSection.innerHTML = instructionsContent;
+        
+        // Add after the payment section
+        var paymentSection = document.getElementById('venmo-payment-section');
+        if (paymentSection && paymentSection.parentNode) {
+            paymentSection.parentNode.insertBefore(instructionsSection, paymentSection.nextSibling);
+        }
+    }
+
+    // Function to handle payment completion
+    function handlePaymentCompletion(transactionId, bookingDetails, button) {
         // Disable button to prevent double clicks
-        completeBtn.disabled = true;
-        completeBtn.textContent = '🔄 Redirecting to scheduling...';
-        completeBtn.className = 'bg-gray-500 text-white font-bold py-3 px-6 rounded-full cursor-not-allowed';
+        button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Redirecting to scheduling...';
+        button.className = 'bg-gray-500 text-white font-bold py-4 px-8 rounded-full text-lg cursor-not-allowed';
         
         // Get the appropriate calendar URL based on package type
-        const schedulingUrl = getSchedulingUrl(bookingDetails.package);
+        var schedulingUrl = getSchedulingUrl(bookingDetails.package);
         
         // Show success message and redirect
-        setTimeout(() => {
-            alert(`Perfect! You'll now be directed to schedule your ${getPackageDisplayName(bookingDetails.package)}.\n\nPlease have this information ready:\n- Your name: ${bookingDetails.name}\n- Transaction ID: ${transactionId}`);
+        setTimeout(function() {
+            var alertMessage = 'Perfect! You\'ll now be directed to schedule your ' + getPackageDisplayName(bookingDetails.package) + '.\n\n';
+            alertMessage += 'Please have this information ready:\n';
+            alertMessage += '- Your name: ' + bookingDetails.name + '\n';
+            alertMessage += '- Transaction ID: ' + transactionId;
+            alert(alertMessage);
             
             // Open scheduling in new tab
             window.open(schedulingUrl, '_blank');
             
             // Update the button to show completion
-            completeBtn.textContent = '✅ Scheduling Opened - Check New Tab';
-            completeBtn.className = 'bg-green-600 text-white font-bold py-3 px-6 rounded-full';
+            button.innerHTML = '✅ Scheduling Opened - Check New Tab';
+            button.className = 'bg-green-600 text-white font-bold py-4 px-8 rounded-full text-lg';
             
             // Show additional instructions
             showSchedulingInstructions(bookingDetails, schedulingUrl);
-        }, 1000);
-    });
-}
+        }, 1500);
+    }
+
+    // Function to enable payment complete button
+    function enablePaymentCompleteButton(transactionId, bookingDetails) {
+        var completeBtn = document.getElementById('payment-complete-btn');
+        if (completeBtn) {
+            completeBtn.disabled = false;
+            completeBtn.className = 'bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transform transition-all duration-200 hover:scale-105';
+            completeBtn.innerHTML = '<i class="fas fa-check mr-2"></i>I\'ve Completed Payment - Schedule My Sessions';
+            
+            completeBtn.addEventListener('click', function() {
+                handlePaymentCompletion(transactionId, bookingDetails, completeBtn);
+            });
+        }
+    }
+
+    // Function to show Venmo payment section
+    function showVenmoPaymentSection(transactionId, bookingDetails) {
+        var paymentSection = document.createElement('div');
+        paymentSection.id = 'venmo-payment-section';
+        paymentSection.className = 'mt-6 p-6 bg-blue-50 rounded-lg border-2 border-blue-200 shadow-lg';
+        
+        // Build HTML content step by step
+        var htmlContent = '';
+        htmlContent += '<div class="text-center mb-6">';
+        htmlContent += '<div class="text-6xl mb-4">💳</div>';
+        htmlContent += '<h3 class="text-2xl font-bold text-blue-800 mb-2">Payment Time!</h3>';
+        htmlContent += '<p class="text-lg text-gray-700">Thank you <strong>' + bookingDetails.name + '</strong> for your booking!</p>';
+        htmlContent += '</div>';
+        
+        htmlContent += '<div class="bg-white p-5 rounded-lg shadow-md mb-6">';
+        htmlContent += '<h4 class="text-lg font-bold text-gray-800 mb-3">📋 Your Booking Details:</h4>';
+        htmlContent += '<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">';
+        htmlContent += '<p><strong>Package:</strong> ' + getPackageDisplayName(bookingDetails.package) + '</p>';
+        htmlContent += '<p><strong>Email:</strong> ' + bookingDetails.email + '</p>';
+        htmlContent += '<p><strong>Phone:</strong> ' + bookingDetails.phone + '</p>';
+        htmlContent += '<p><strong>Transaction ID:</strong> <span class="font-mono bg-gray-100 px-2 py-1 rounded">' + transactionId + '</span></p>';
+        htmlContent += '</div></div>';
+        
+        htmlContent += '<div id="venmo-instructions" class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">';
+        htmlContent += '<div class="flex items-start">';
+        htmlContent += '<div class="flex-shrink-0"><i class="fas fa-info-circle text-yellow-600 text-xl"></i></div>';
+        htmlContent += '<div class="ml-3">';
+        htmlContent += '<h4 class="text-lg font-bold text-yellow-800 mb-2">🔄 Opening Venmo...</h4>';
+        htmlContent += '<p class="text-yellow-700 mb-3">We\'re trying to open Venmo automatically. If it doesn\'t open in a few seconds, use the manual link below.</p>';
+        htmlContent += '</div></div></div>';
+        
+        htmlContent += '<div id="venmo-link-section" class="text-center mb-6">';
+        htmlContent += '<p class="text-gray-700 mb-4"><strong>💰 Make your payment to:</strong></p>';
+        htmlContent += '<div class="bg-white p-4 rounded-lg border-2 border-green-200 mb-4">';
+        htmlContent += '<p class="text-xl font-bold text-green-800 mb-2">@bcnfutbolacademy</p>';
+        htmlContent += '<p class="text-lg text-gray-700">Amount: <strong class="text-green-600">' + getPackagePrice(bookingDetails.package) + '</strong></p>';
+        htmlContent += '</div>';
+        
+        htmlContent += '<a href="https://www.venmo.com/u/bcnfutbolacademy" target="_blank" id="venmo-manual-link"';
+        htmlContent += ' class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transform transition-all duration-200 hover:scale-105">';
+        htmlContent += '<span class="mr-3">💳</span>Open Venmo to Pay</a>';
+        
+        htmlContent += '<p class="text-sm text-gray-600 mt-3">';
+        htmlContent += '<i class="fas fa-mobile-alt mr-1"></i>';
+        htmlContent += 'Don\'t have Venmo? <a href="https://venmo.com/getvenmo" target="_blank" class="text-blue-600 hover:underline">Download the app here</a>';
+        htmlContent += '</p></div>';
+        
+        htmlContent += '<div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">';
+        htmlContent += '<h4 class="font-bold text-green-800 mb-2">✅ After Payment:</h4>';
+        htmlContent += '<ol class="list-decimal pl-5 space-y-1 text-green-700">';
+        htmlContent += '<li>Complete your payment on Venmo</li>';
+        htmlContent += '<li>Return to this page</li>';
+        htmlContent += '<li>Click "I\'ve Completed Payment" below</li>';
+        htmlContent += '<li>You\'ll be directed to schedule your sessions</li>';
+        htmlContent += '</ol></div>';
+        
+        htmlContent += '<div class="text-center">';
+        htmlContent += '<button id="payment-complete-btn" disabled';
+        htmlContent += ' class="bg-gray-400 text-white font-bold py-4 px-8 rounded-full text-lg cursor-not-allowed">';
+        htmlContent += '<i class="fas fa-clock mr-2"></i>I\'ve Completed Payment - Schedule My Sessions</button>';
+        htmlContent += '<p class="text-sm text-gray-500 mt-3">';
+        htmlContent += '<i class="fas fa-info-circle mr-1"></i>Complete your Venmo payment first, then this button will be enabled</p>';
+        htmlContent += '</div>';
+        
+        paymentSection.innerHTML = htmlContent;
+        
+        // Add the section after the booking form
+        var bookingForm = document.getElementById('booking-form');
+        if (bookingForm && bookingForm.parentNode) {
+            bookingForm.parentNode.insertBefore(paymentSection, bookingForm.nextSibling);
+        }
+        
+        // Set up the payment complete button (initially disabled)
+        setTimeout(function() {
+            enablePaymentCompleteButton(transactionId, bookingDetails);
+        }, 3000); // Enable after 3 seconds
+    }
+
+    // Main Book Now button functionality
+    var bookNowBtn = document.getElementById('book-now-btn');
+    if (bookNowBtn) {
+        bookNowBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent any default form submission
+            
+            // Get form data for validation
+            var nameInput = document.getElementById('name');
+            var emailInput = document.getElementById('email');
+            var phoneInput = document.getElementById('phone');
+            var packageSelect = document.getElementById('package');
+            
+            // Basic validation
+            if (!nameInput || !nameInput.value.trim()) {
+                alert('Please enter your name.');
+                if (nameInput) nameInput.focus();
+                return;
+            }
+            
+            if (!emailInput || !emailInput.value.trim() || !emailInput.checkValidity()) {
+                alert('Please enter a valid email address.');
+                if (emailInput) emailInput.focus();
+                return;
+            }
+            
+            if (!phoneInput || !phoneInput.value.trim() || !phoneInput.checkValidity()) {
+                alert('Please enter a valid phone number.');
+                if (phoneInput) phoneInput.focus();
+                return;
+            }
+            
+            if (!packageSelect || !packageSelect.value) {
+                alert('Please select a package.');
+                if (packageSelect) packageSelect.focus();
+                return;
+            }
+            
+            // Generate unique transaction ID
+            var transactionId = generateTransactionId();
+            
+            // Store booking details
+            var bookingDetails = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                package: packageSelect.value,
+                transactionId: transactionId,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Store in localStorage if available (with error handling)
+            try {
+                if (typeof Storage !== "undefined" && window.localStorage) {
+                    localStorage.setItem('bcnBooking_' + transactionId, JSON.stringify(bookingDetails));
+                }
+            } catch (error) {
+                console.warn('Could not save booking details:', error);
+                // Continue anyway - not critical for the booking process
+            }
+            
+            // Hide the booking form
+            var bookingForm = document.getElementById('booking-form');
+            if (bookingForm) {
+                bookingForm.style.display = 'none';
+            }
+            
+            // Show payment section with Venmo instructions
+            showVenmoPaymentSection(transactionId, bookingDetails);
+            
+            // Try to open Venmo automatically
+            attemptVenmoRedirect();
+        });
+    }
+});
 
 // Function to get the correct scheduling URL based on package type
 function getSchedulingUrl(packageType) {
