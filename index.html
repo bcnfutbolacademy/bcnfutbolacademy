@@ -711,7 +711,7 @@
                             </div>
                             <div class="flex items-center">
                                 <i class="fas fa-map-marker-alt w-8 text-green-700" aria-hidden="true"></i>
-                                <span class="text-gray-700">Shawnee Mission North HS, Kansas</span>
+                                <span class="text-gray-700">Kansas City, Kansas/Missouri</span>
                             </div>
                         </div>
                     </div>
@@ -950,7 +950,7 @@ function showPaymentCompleteButton(transactionId, bookingDetails) {
     paymentSection.className = 'mt-6 p-6 bg-blue-50 rounded-lg border-2 border-blue-200';
     
     paymentSection.innerHTML = `
-        <h3 class="text-xl font-bold text-blue-800 mb-4">💳 Payment Step</h3>
+        <h3 class="text-xl font-bold text-blue-800 mb-4">Payment Step</h3>
         <p class="text-gray-700 mb-4">
             <strong>Next Steps:</strong><br>
             1. Complete your payment on the Venmo tab that just opened<br>
@@ -961,7 +961,7 @@ function showPaymentCompleteButton(transactionId, bookingDetails) {
             <strong>Your Transaction ID:</strong> <span class="font-mono bg-gray-200 px-2 py-1 rounded">${transactionId}</span>
         </p>
         <button id="payment-complete-btn" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg">
-            ✅ I've Completed Payment - Schedule My Sessions
+            I've Completed Payment - Schedule My Sessions
         </button>
     `;
     
@@ -978,7 +978,7 @@ function showPaymentCompleteButton(transactionId, bookingDetails) {
     completeBtn.addEventListener('click', function() {
         // Disable button to prevent double clicks
         completeBtn.disabled = true;
-        completeBtn.textContent = '🔄 Redirecting to scheduling...';
+        completeBtn.textContent = 'Redirecting to scheduling...';
         completeBtn.className = 'bg-gray-500 text-white font-bold py-3 px-6 rounded-full cursor-not-allowed';
         
         // Get the appropriate calendar URL based on package type
@@ -992,7 +992,7 @@ function showPaymentCompleteButton(transactionId, bookingDetails) {
             window.open(schedulingUrl, '_blank');
             
             // Update the button to show completion
-            completeBtn.textContent = '✅ Scheduling Opened - Check New Tab';
+            completeBtn.textContent = 'Scheduling Opened - Check New Tab';
             completeBtn.className = 'bg-green-600 text-white font-bold py-3 px-6 rounded-full';
             
             // Show additional instructions
@@ -1024,7 +1024,7 @@ function showSchedulingInstructions(bookingDetails, schedulingUrl) {
     instructionsSection.className = 'mt-6 p-6 bg-green-50 rounded-lg border-2 border-green-200';
     
     instructionsSection.innerHTML = `
-        <h3 class="text-xl font-bold text-green-800 mb-4">📅 Next: Schedule Your Sessions</h3>
+        <h3 class="text-xl font-bold text-green-800 mb-4">Next: Schedule Your Sessions</h3>
         <div class="mb-4">
             <p class="text-gray-700 mb-2"><strong>Your booking details:</strong></p>
             <ul class="list-disc pl-5 text-gray-700">
@@ -1035,7 +1035,7 @@ function showSchedulingInstructions(bookingDetails, schedulingUrl) {
         </div>
         
         <div class="bg-white p-4 rounded-lg mb-4">
-            <p class="text-gray-700 mb-3"><strong>📋 Scheduling Instructions:</strong></p>
+            <p class="text-gray-700 mb-3"><strong>Scheduling Instructions:</strong></p>
             <ol class="list-decimal pl-5 space-y-1 text-gray-700">
                 <li>Check the new tab that opened with your scheduling calendar</li>
                 <li>Select your preferred dates and times</li>
@@ -1046,11 +1046,11 @@ function showSchedulingInstructions(bookingDetails, schedulingUrl) {
         
         <div class="flex flex-col sm:flex-row gap-3">
             <a href="${schedulingUrl}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-center transition duration-300">
-                🔗 Open Scheduling Again
+                Open Scheduling Again
             </a>
             <a href="mailto:bcnfutbolacademy@gmail.com?subject=Booking%20Assistance%20-%20${bookingDetails.transactionId}&body=Hi%2C%20I%20need%20help%20with%20scheduling%20my%20sessions.%0A%0ATransaction%20ID%3A%20${bookingDetails.transactionId}%0AName%3A%20${bookingDetails.name}%0APackage%3A%20${getPackageDisplayName(bookingDetails.package)}" 
                class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full text-center transition duration-300">
-                📧 Need Help? Email Us
+                 Need Help? Email Us
             </a>
         </div>
     `;
