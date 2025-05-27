@@ -781,96 +781,96 @@
 <!-- JavaScript -->
     <script>
         // Wait for DOM to be fully loaded before executing any JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM content loaded - initializing scripts');
-            
-            // Mobile menu toggle
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
-            const mobileMenu = document.querySelector('.mobile-menu');
-
-            if(mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function() {
-                    const isExpanded = mobileMenu.classList.contains('hidden') ? false : true;
-                    mobileMenu.classList.toggle('hidden');
-                    // Update ARIA attributes
-                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-                    
-                    // Prevent scrolling when menu is open
-                    if (!isExpanded) {
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        document.body.style.overflow = '';
-                    }
-                });
-                
-                // Close mobile menu when clicking on a link
-                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-                mobileMenuLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuButton.setAttribute('aria-expanded', 'false');
-                        document.body.style.overflow = '';
-                    });
-                });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!mobileMenu.classList.contains('hidden') && 
-                        !mobileMenu.contains(event.target) && 
-                        !mobileMenuButton.contains(event.target)) {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuButton.setAttribute('aria-expanded', 'false');
-                        document.body.style.overflow = '';
-                    }
-                });
-            }
-            
-            // Tab functionality for pricing section - THIS IS THE KEY PART!
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const pricingContents = document.querySelectorAll('.pricing-content');
-            
-            console.log('Found tab buttons:', tabButtons.length);
-            console.log('Found pricing contents:', pricingContents.length);
-            
-            if(tabButtons.length > 0) {
-                tabButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        console.log('Tab clicked:', this.id);
-                        
-                        // Get the tab id from the button id
-                        const tabId = this.id.replace('tab-', '');
-                        console.log('Tab ID:', tabId);
-                        
-                        // Hide all pricing contents
-                        pricingContents.forEach(content => {
-                            content.classList.add('hidden');
-                            content.setAttribute('aria-hidden', 'true');
-                        });
-                        
-                        // Show the selected content
-                        const selectedContent = document.getElementById(`pricing-${tabId}`);
-                        console.log('Selected content:', selectedContent);
-                        
-                        if(selectedContent) {
-                            selectedContent.classList.remove('hidden');
-                            selectedContent.setAttribute('aria-hidden', 'false');
-                        }
-                        
-                        // Update active tab styling
-                        tabButtons.forEach(btn => {
-                            btn.classList.remove('bg-green-700', 'text-white');
-                            btn.classList.add('bg-gray-800', 'text-gray-300');
-                            btn.setAttribute('aria-pressed', 'false');
-                        });
-                        
-                        this.classList.remove('bg-gray-800', 'text-gray-300');
-                        this.classList.add('bg-green-700', 'text-white');
-                        this.setAttribute('aria-pressed', 'true');
-                    });
-                });
-            }
-/ Enhanced Book Now button functionality with Venmo backup - FULLY CORRECTED VERSION
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM content loaded - initializing scripts');
+    
+    // Mobile menu toggle
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    if(mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            const isExpanded = mobileMenu.classList.contains('hidden') ? false : true;
+            mobileMenu.classList.toggle('hidden');
+            // Update ARIA attributes
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            
+            // Prevent scrolling when menu is open
+            if (!isExpanded) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenu.classList.contains('hidden') && 
+                !mobileMenu.contains(event.target) && 
+                !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Tab functionality for pricing section
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const pricingContents = document.querySelectorAll('.pricing-content');
+    
+    console.log('Found tab buttons:', tabButtons.length);
+    console.log('Found pricing contents:', pricingContents.length);
+    
+    if(tabButtons.length > 0) {
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                console.log('Tab clicked:', this.id);
+                
+                // Get the tab id from the button id
+                const tabId = this.id.replace('tab-', '');
+                console.log('Tab ID:', tabId);
+                
+                // Hide all pricing contents
+                pricingContents.forEach(content => {
+                    content.classList.add('hidden');
+                    content.setAttribute('aria-hidden', 'true');
+                });
+                
+                // Show the selected content
+                const selectedContent = document.getElementById(`pricing-${tabId}`);
+                console.log('Selected content:', selectedContent);
+                
+                if(selectedContent) {
+                    selectedContent.classList.remove('hidden');
+                    selectedContent.setAttribute('aria-hidden', 'false');
+                }
+                
+                // Update active tab styling
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('bg-green-700', 'text-white');
+                    btn.classList.add('bg-gray-800', 'text-gray-300');
+                    btn.setAttribute('aria-pressed', 'false');
+                });
+                
+                this.classList.remove('bg-gray-800', 'text-gray-300');
+                this.classList.add('bg-green-700', 'text-white');
+                this.setAttribute('aria-pressed', 'true');
+            });
+        });
+    }
+
+    // ===== ENHANCED BOOK NOW BUTTON FUNCTIONALITY =====
     
     // Function to generate unique transaction ID
     function generateTransactionId() {
@@ -1149,8 +1149,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Main Book Now button functionality
     var bookNowBtn = document.getElementById('book-now-btn');
     if (bookNowBtn) {
+        console.log('Book Now button found, adding event listener');
         bookNowBtn.addEventListener('click', function(e) {
             e.preventDefault(); // Prevent any default form submission
+            console.log('Book Now button clicked');
             
             // Get form data for validation
             var nameInput = document.getElementById('name');
@@ -1185,6 +1187,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Generate unique transaction ID
             var transactionId = generateTransactionId();
+            console.log('Generated transaction ID:', transactionId);
             
             // Store booking details
             var bookingDetails = {
@@ -1195,6 +1198,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 transactionId: transactionId,
                 timestamp: new Date().toISOString()
             };
+            
+            console.log('Booking details:', bookingDetails);
             
             // Store in localStorage if available (with error handling)
             try {
@@ -1218,102 +1223,23 @@ document.addEventListener('DOMContentLoaded', function() {
             // Try to open Venmo automatically
             attemptVenmoRedirect();
         });
-    }
-});
-
-// Function to get the correct scheduling URL based on package type
-function getSchedulingUrl(packageType) {
-    if (packageType.startsWith('individual-')) {
-        // Individual training sessions calendar
-        return "https://calendar.app.google/DKyrC3Hd16Ybw5KM6";
-    } else if (packageType.startsWith('group-')) {
-        // Group training sessions calendar
-        return "https://calendar.app.google/AA77AGJFcHw2V1hWA";
-    } else if (packageType.startsWith('summer-')) {
-        // Summer package calendar
-        return "https://calendar.app.google/Y2rSBJ1vUiCaDv819";
     } else {
-        // Default to individual sessions calendar
-        return "https://calendar.app.google/DKyrC3Hd16Ybw5KM6";
+        console.error('Book Now button not found!');
     }
-}
 
-// Function to show scheduling instructions
-function showSchedulingInstructions(bookingDetails, schedulingUrl) {
-    const instructionsSection = document.createElement('div');
-    instructionsSection.className = 'mt-6 p-6 bg-green-50 rounded-lg border-2 border-green-200';
-    
-    instructionsSection.innerHTML = `
-        <h3 class="text-xl font-bold text-green-800 mb-4">📅 Next: Schedule Your Sessions</h3>
-        <div class="mb-4">
-            <p class="text-gray-700 mb-2"><strong>Your booking details:</strong></p>
-            <ul class="list-disc pl-5 text-gray-700">
-                <li>Name: ${bookingDetails.name}</li>
-                <li>Package: ${getPackageDisplayName(bookingDetails.package)}</li>
-                <li>Transaction ID: ${bookingDetails.transactionId}</li>
-            </ul>
-        </div>
-        
-        <div class="bg-white p-4 rounded-lg mb-4">
-            <p class="text-gray-700 mb-3"><strong>📋 Scheduling Instructions:</strong></p>
-            <ol class="list-decimal pl-5 space-y-1 text-gray-700">
-                <li>Check the new tab that opened with your scheduling calendar</li>
-                <li>Select your preferred dates and times</li>
-                <li>Enter your name and transaction ID when prompted</li>
-                <li>You'll receive email confirmations for each scheduled session</li>
-            </ol>
-        </div>
-        
-        <div class="flex flex-col sm:flex-row gap-3">
-            <a href="${schedulingUrl}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-center transition duration-300">
-                🔗 Open Scheduling Again
-            </a>
-            <a href="mailto:bcnfutbolacademy@gmail.com?subject=Booking%20Assistance%20-%20${bookingDetails.transactionId}&body=Hi%2C%20I%20need%20help%20with%20scheduling%20my%20sessions.%0A%0ATransaction%20ID%3A%20${bookingDetails.transactionId}%0AName%3A%20${bookingDetails.name}%0APackage%3A%20${getPackageDisplayName(bookingDetails.package)}" 
-               class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full text-center transition duration-300">
-                📧 Need Help? Email Us
-            </a>
-        </div>
-    `;
-    
-    // Add after the payment section
-    const paymentSection = document.getElementById('payment-confirmation');
-    if (paymentSection) {
-        paymentSection.parentNode.insertBefore(instructionsSection, paymentSection.nextSibling);
-    }
-}
-
-// Function to get display-friendly package names
-function getPackageDisplayName(packageId) {
-    const packageMap = {
-        'individual-4': '4 Individual Sessions ($240)',
-        'individual-8': '8 Individual Sessions ($440)', 
-        'individual-12': '12 Individual Sessions ($600)',
-        'individual-16': '16 Individual Sessions ($720)',
-        'group-2': '2 Players Group Session ($50 each)',
-        'group-3': '3 Players Group Session ($45 each)',
-        'group-4': '4 Players Group Session ($40 each)',
-        'group-5': '5+ Players Group Session ($35 each)',
-        'summer-mini': 'Summer Mini Pack - 4 Sessions ($200)',
-        'summer-half': 'Summer Half Pack - 8 Sessions ($250)',
-        'summer-flex': 'Summer Flex Pack - 12 Sessions ($375)',
-        'summer-full': 'Summer Full Pack - 16 Sessions ($480)'
-    };
-    
-    return packageMap[packageId] || packageId;
-}
-            // Smooth scrolling for all anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(this.getAttribute('href'));
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
+    // Smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetElement = document.querySelector(this.getAttribute('href'));
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
                 });
-            });
+            }
         });
+    });
+});
     </script>
 </body>
 </html>
