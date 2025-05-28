@@ -1,5 +1,4 @@
-<!-- JavaScript -->
-<script>
+
 // Combined JavaScript for BCN Futbol Academy Booking System
 // Merges the best features from both versions while maintaining simplicity and reliability
 
@@ -582,4 +581,3 @@ function initializeSmoothScrolling() {
         });
     });
 }
-</script>
