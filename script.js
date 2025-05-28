@@ -221,9 +221,10 @@ function handleBookingClick(e) {
     const emailInput = document.getElementById('email');
     const phoneInput = document.getElementById('phone');
     const packageSelect = document.getElementById('package');
+    const messageInput = document.getElementById('message');
     
     // Basic validation
-    if (!validateForm(nameInput, emailInput, phoneInput, packageSelect)) {
+    if (!validateForm(nameInput, emailInput, phoneInput, packageSelect, messageInput)) {
         return;
     }
     
@@ -243,6 +244,7 @@ function handleBookingClick(e) {
             email: emailInput.value,
             phone: phoneInput.value,
             package: packageSelect.value,
+            additionalInfo: messageInput.value,
             transactionId: transactionId,
             timestamp: new Date().toISOString(),
             paymentStatus: 'pending'
