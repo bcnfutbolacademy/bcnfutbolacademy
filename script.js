@@ -383,9 +383,6 @@ function showPaymentCompleteButton(transactionId) {
         <p class="text-gray-700 mb-4">
             Once you've completed payment on Venmo, click the button below to schedule your sessions.
         </p>
-        <p class="text-sm text-gray-600 mb-4">
-            <strong>Transaction ID:</strong> <span class="font-mono bg-gray-200 px-2 py-1 rounded">${transactionId}</span>
-        </p>
         <button id="payment-complete-btn" 
                 class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg">
             I've Completed Payment - Schedule Sessions
@@ -476,7 +473,7 @@ function showSchedulingInstructions(bookingDetails, schedulingUrl) {
             <ol class="list-decimal pl-5 space-y-1 text-gray-700">
                 <li>Check the new tab that opened with your scheduling calendar</li>
                 <li>Select your preferred dates and times</li>
-                <li>Enter your name and transaction ID when prompted</li>
+                <li>Enter the player's name and age when prompted</li>
                 <li>You'll receive email confirmations for each scheduled session</li>
             </ol>
         </div>
