@@ -466,7 +466,6 @@ function showSchedulingInstructions(bookingDetails, schedulingUrl) {
             <ol class="list-decimal pl-5 space-y-1 text-gray-700">
                 <li>Check the new tab that opened with your scheduling calendar</li>
                 <li>Select your preferred dates and times</li>
-                <li>Enter the player's name and age when prompted</li>
                 <li>You'll receive email confirmations for each scheduled session</li>
             </ol>
         </div>
