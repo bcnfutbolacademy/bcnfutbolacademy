@@ -426,10 +426,9 @@ function handlePaymentCompletion(transactionId, button) {
         
         // Show success message and redirect
         setTimeout(() => {
-            alert(`Perfect! You'll now be directed to schedule your ${getPackageDisplayName(bookingDetails.package)}.\n\n` +
+            alert(`Perfect! You'll now be directed to schedule your sessions.\n\n` +
                   `Please have this information ready:\n` +
-                  `- Your name: ${bookingDetails.name}\n` +
-                  `- Transaction ID: ${transactionId}`);
+                  `- Player's Name & Age: ${bookingDetails.name}\n`);
             
             // Open scheduling calendar
             window.open(schedulingUrl, '_blank');
