@@ -428,7 +428,7 @@ function handlePaymentCompletion(transactionId, button) {
         setTimeout(() => {
             alert(`Perfect! You'll now be directed to schedule your sessions.\n\n` +
                   `Please have this information ready:\n` +
-                  `- Player's Name & Age: ${bookingDetails.name}\n`);
+                  `- Player's Name & Age:\n`);
             
             // Open scheduling calendar
             window.open(schedulingUrl, '_blank');
@@ -459,13 +459,7 @@ function showSchedulingInstructions(bookingDetails, schedulingUrl) {
     instructionsSection.innerHTML = `
         <h3 class="text-xl font-bold text-green-800 mb-4">Next: Schedule Your Sessions</h3>
         <div class="mb-4">
-            <p class="text-gray-700 mb-2"><strong>Your booking details:</strong></p>
-            <ul class="list-disc pl-5 text-gray-700">
-                <li>Name: ${bookingDetails.name}</li>
-                <li>Package: ${getPackageDisplayName(bookingDetails.package)}</li>
-                <li>Transaction ID: ${bookingDetails.transactionId}</li>
-            </ul>
-        </div>
+                  </div>
         
         <div class="bg-white p-4 rounded-lg mb-4">
             <p class="text-gray-700 mb-3"><strong>Scheduling Instructions:</strong></p>
