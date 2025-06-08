@@ -492,8 +492,6 @@ function showSchedulingInstructions(bookingDetails, schedulingUrl) {
 function getSchedulingUrl(packageType) {
     if (packageType.startsWith('individual-')) {
         return "https://calendar.app.google/DKyrC3Hd16Ybw5KM6";
-    } else if (packageType.startsWith('group-')) {
-        return "https://calendar.app.google/AA77AGJFcHw2V1hWA";
     } else if (packageType.startsWith('summer-')) {
         return "https://calendar.app.google/Y2rSBJ1vUiCaDv819";
     } else {
