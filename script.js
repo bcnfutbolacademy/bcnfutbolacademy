@@ -336,9 +336,7 @@ function showPaymentInstructions(bookingDetails) {
     alert(`Thank you ${bookingDetails.name}!\n\n` +
           `1. You'll be redirected to Venmo for payment\n` +
           `2. After completing payment, return to this page and click "I've Completed Payment"\n` +
-          `3. You'll then be directed to schedule your sessions\n\n` +
-          `Transaction ID: ${bookingDetails.transactionId}\n` +
-          `Package: ${getPackageDisplayName(bookingDetails.package)}`);
+          `3. You'll then be directed to schedule your sessions\n\n`);
 }
 
 function openVenmoWithFallback() {
