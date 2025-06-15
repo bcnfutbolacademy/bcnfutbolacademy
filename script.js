@@ -407,7 +407,7 @@ function handlePaymentCompletion(transactionId, button) {
     // Disable button to prevent double clicks
     button.disabled = true;
     button.textContent = 'Processing...';
-    button.className = 'bg-primary hover:opacity-90 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg';
+    button.className = 'bg-gray-500 text-white font-bold py-3 px-6 rounded-full cursor-not-allowed';
     
     try {
         // Verify booking exists
@@ -448,13 +448,13 @@ function handlePaymentCompletion(transactionId, button) {
         // Re-enable button
         button.disabled = false;
         button.textContent = 'I\'ve Completed Payment - Schedule Sessions';
-        button.className = 'bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg';
+        button.className = 'bg-primary hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg';
     }
 }
 
 function showSchedulingInstructions(bookingDetails, schedulingUrl) {
     const instructionsSection = document.createElement('div');
-    instructionsSection.className = 'mt-6 p-6 bg-green-50 rounded-lg border-2 border-gray-200';
+    instructionsSection.className = 'mt-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200';
     
     instructionsSection.innerHTML = `
         <h3 class="text-xl font-bold text-primary mb-4">Next: Schedule Your Sessions</h3>
