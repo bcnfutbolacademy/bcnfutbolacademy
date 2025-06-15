@@ -193,15 +193,15 @@ function initializePricingTabs() {
                 }
                 
                 // Update active tab styling
-                tabButtons.forEach(btn => {
-                    btn.classList.remove('bg-green-700', 'text-white');
-                    btn.classList.add('bg-gray-800', 'text-gray-300');
-                    btn.setAttribute('aria-pressed', 'false');
-                });
-                
-                this.classList.remove('bg-gray-800', 'text-gray-300');
-                this.classList.add('bg-green-700', 'text-white');
-                this.setAttribute('aria-pressed', 'true');
+tabButtons.forEach(btn => {
+    btn.classList.remove('bg-primary', 'text-white');
+    btn.classList.add('bg-gray-800', 'text-gray-300');
+    btn.setAttribute('aria-pressed', 'false');
+});
+
+this.classList.remove('bg-gray-800', 'text-gray-300');
+this.classList.add('bg-primary', 'text-white');
+this.setAttribute('aria-pressed', 'true');
             });
         });
     }
@@ -361,7 +361,7 @@ function showVenmoFallback() {
         <p class="text-yellow-800 font-bold mb-2">Popup Blocked</p>
         <p class="text-gray-700 mb-3">Click the link below to complete your payment:</p>
         <a href="https://www.venmo.com/u/bcnfutbolacademy" target="_blank" 
-           class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-full font-bold inline-block">
+   class="bg-primary hover:opacity-90 text-white px-4 py-2 rounded-full font-bold inline-block">
             Open Venmo Payment
         </a>
         <p class="text-sm text-gray-600 mt-3">After payment, return here and click "I've Completed Payment"</p>
@@ -383,8 +383,8 @@ function showPaymentCompleteButton(transactionId) {
         <p class="text-gray-700 mb-4">
             Once you've completed payment on Venmo, click the button below to schedule your sessions.
         </p>
-        <button id="payment-complete-btn" 
-                class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg">
+       <button id="payment-complete-btn" 
+        class="bg-primary hover:opacity-90 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg">
             I've Completed Payment - Schedule Sessions
         </button>
     `;
@@ -407,7 +407,7 @@ function handlePaymentCompletion(transactionId, button) {
     // Disable button to prevent double clicks
     button.disabled = true;
     button.textContent = 'Processing...';
-    button.className = 'bg-gray-500 text-white font-bold py-3 px-6 rounded-full cursor-not-allowed';
+    button.className = 'bg-primary hover:opacity-90 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg';
     
     try {
         // Verify booking exists
