@@ -435,7 +435,7 @@ function handlePaymentCompletion(transactionId, button) {
             
             // Update button and show instructions
             button.textContent = 'Scheduling Opened - Check New Tab';
-            button.className = 'bg-green-600 text-white font-bold py-3 px-6 rounded-full';
+            button.className = 'bg-primary text-white font-bold py-3 px-6 rounded-full';
             
             // Show detailed instructions
             showSchedulingInstructions(bookingDetails, schedulingUrl);
@@ -454,10 +454,10 @@ function handlePaymentCompletion(transactionId, button) {
 
 function showSchedulingInstructions(bookingDetails, schedulingUrl) {
     const instructionsSection = document.createElement('div');
-    instructionsSection.className = 'mt-6 p-6 bg-green-50 rounded-lg border-2 border-green-200';
+    instructionsSection.className = 'mt-6 p-6 bg-green-50 rounded-lg border-2 border-gray-200';
     
     instructionsSection.innerHTML = `
-        <h3 class="text-xl font-bold text-green-800 mb-4">Next: Schedule Your Sessions</h3>
+        <h3 class="text-xl font-bold text-primary mb-4">Next: Schedule Your Sessions</h3>
         <div class="mb-4">
                   </div>
         
@@ -537,7 +537,7 @@ function checkForExistingBooking() {
                         
                         // Scroll to instructions
                         setTimeout(() => {
-                            const instructions = document.querySelector('.bg-green-50');
+                            const instructions = document.querySelector('.bg-gray-50');
                             if (instructions) {
                                 instructions.scrollIntoView({ behavior: 'smooth' });
                             }
