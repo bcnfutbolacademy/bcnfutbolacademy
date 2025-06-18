@@ -473,7 +473,7 @@ function showSchedulingInstructions(bookingDetails, schedulingUrl) {
         
         <div class="flex flex-col sm:flex-row gap-3">
             <a href="${schedulingUrl}" target="_blank" 
-               class="bg-blue-600 hover:bg-primary text-white font-bold py-2 px-4 rounded-full text-center transition duration-300">
+               class="bg-primary hover:bg-primary text-white font-bold py-2 px-4 rounded-full text-center transition duration-300">
                 Open Scheduling Again
             </a>
             <a href="mailto:bcnfutbolacademy@gmail.com?subject=Booking%20Assistance%20-%20${bookingDetails.transactionId}" 
