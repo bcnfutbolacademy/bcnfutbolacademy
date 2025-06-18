@@ -193,14 +193,17 @@ function initializePricingTabs() {
                 }
                 
                 // Update active tab styling
+/ Update active tab styling
 tabButtons.forEach(btn => {
-    btn.classList.remove('bg-primary', 'text-white');
+    btn.classList.remove('text-black');
     btn.classList.add('bg-gray-800', 'text-gray-300');
+    btn.style.backgroundColor = '';
     btn.setAttribute('aria-pressed', 'false');
 });
 
 this.classList.remove('bg-gray-800', 'text-gray-300');
-this.classList.add('bg-primary', 'text-white');
+this.classList.add('text-black');
+this.style.backgroundColor = '#ffdf00';
 this.setAttribute('aria-pressed', 'true');
             });
         });
