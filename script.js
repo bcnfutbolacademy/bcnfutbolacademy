@@ -195,13 +195,13 @@ function initializePricingTabs() {
                 // Update active tab styling
 // Update active tab styling
 tabButtons.forEach(btn => {
-    btn.classList.remove('bg-primary', 'text-white');
+    btn.classList.remove('bg-buttons', 'text-black');
     btn.classList.add('bg-gray-800', 'text-gray-300');
     btn.setAttribute('aria-pressed', 'false');
 });
 
 this.classList.remove('bg-gray-800', 'text-gray-300');
-this.classList.add('bg-primary', 'text-white');
+this.classList.add('bg-buttons', 'text-black');
 this.setAttribute('aria-pressed', 'true');
             });
         });
