@@ -191,16 +191,15 @@ function initializePricingTabs() {
                     selectedContent.classList.remove('hidden');
                     selectedContent.setAttribute('aria-hidden', 'false');
                 }
-                
-                // Update active tab styling
+        
 // Update active tab styling
 tabButtons.forEach(btn => {
     btn.classList.remove('bg-buttons', 'text-black');
-    btn.classList.add('bg-gray-800', 'text-gray-300');
+    btn.classList.add('bg-gray-800', 'text-gray-300', 'border', 'border-buttons', 'border-2');
     btn.setAttribute('aria-pressed', 'false');
 });
 
-this.classList.remove('bg-gray-800', 'text-gray-300');
+this.classList.remove('bg-gray-800', 'text-gray-300', 'border', 'border-buttons', 'border-2');
 this.classList.add('bg-buttons', 'text-black');
 this.setAttribute('aria-pressed', 'true');
             });
