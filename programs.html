@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BCN Fútbol Academy — detailed breakdown of our training programs: Individual Sessions, Group Sessions, Summer Development, and Preseason Lab.">
+    <title>Programs — BCN Fútbol Academy</title>
+    <link rel="icon" type="image/png" href="assets/images/bcn-logo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/bcn-logo.png">
+    <link rel="apple-touch-icon" href="assets/images/bcn-logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            overflow-x: hidden;
+            background-color: #f9fafb;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+        }
+        .text-primary { color: #449b18; }
+        .bg-primary { background-color: #449b18; }
+        .border-primary { border-color: #449b18; }
+        .bubble-title { color: #ffdf00; }
+        .bg-buttons { background-color: #ffdf00; }
+        .logo-bcn { width: 50px; height: 50px; }
+        img { max-width: 100%; height: auto; }
+
+        /* Section divider accent */
+        .section-accent {
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #449b18;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* Pricing card hover */
+        .price-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .price-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        /* Sticky nav */
+        nav { position: sticky; top: 0; z-index: 50; }
+
+        /* Smooth scroll offset for anchors */
+        [id] { scroll-margin-top: 80px; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .container { padding-left: 16px; padding-right: 16px; }
+            input, select, textarea { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+<nav class="bg-black shadow-md">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center">
+            <img src="assets/images/bcn-logo.png" alt="BCN Futbol Academy Logo" class="logo-bcn">
+            <h1 class="ml-3 text-xl font-bold text-white">BCN Fútbol Academy</h1>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+            <a href="index.html" class="text-white hover:text-primary">Home</a>
+            <a href="programs.html" class="text-white hover:text-primary">Programs</a>
+            <a href="contact.html" class="text-white hover:text-primary">Contact</a>
+            <a href="book-now.html" class="bg-primary hover:bg-green-800 text-white font-bold px-5 py-2 rounded-full transition duration-300">Book Now</a>
+        </div>
+        <div class="md:hidden">
+            <button class="text-white mobile-menu-button" aria-label="Toggle mobile menu" aria-expanded="false">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden">
+        <a href="index.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Home</a>
+        <a href="programs.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Programs</a>
+        <a href="contact.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Contact</a>
+        <a href="book-now.html" class="block py-2 px-4 text-sm font-bold text-white bg-primary hover:bg-green-800">Book Now</a>
+    </div>
+</nav>
+
+    <!-- Page Hero -->
+    <section class="bg-black text-white py-8">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3">Programs</h1>
+            <p class="text-gray-400 text-lg">Intentional training. Complete development.</p>
+        </div>
+    </section>
+
+
+    <!-- Programs Cards -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Individual Sessions -->
+                <div id="individual" class="bg-black rounded-2xl shadow-xl overflow-hidden flex flex-col">
+                    <div class="p-8 flex-grow flex flex-col">
+                        <!-- Header -->
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="bg-primary rounded-full h-12 w-12 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-user text-white text-lg"></i>
+                            </div>
+                            <h2 class="text-xl font-bold text-white">Individual Sessions</h2>
+                        </div>
+                        <!-- Details -->
+                        <div class="flex items-start gap-2 text-gray-400 text-sm mb-2">
+                            <i class="fas fa-calendar-alt mt-1 flex-shrink-0 text-primary"></i>
+                            <span>TBD</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-gray-400 text-sm mb-2">
+                            <i class="fas fa-map-marker-alt mt-1 flex-shrink-0 text-primary"></i>
+                            <span>TBD</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-gray-400 text-sm mb-2">
+                            <i class="fas fa-user mt-1 flex-shrink-0 text-primary"></i>
+                            <span>1 player | 60 minutes</span>
+                        </div>
+                        <!-- Description -->
+                        <p class="text-gray-300 text-sm font-normal mt-4 mb-6">One-on-one sessions designed to accelerate player development through fully personalized, game-relevant training. Includes an Individual Development Plan, position-specific scenarios, technical work applied to real-game situations, and detailed feedback.</p>
+                        <!-- Pricing box -->
+                        <div class="bg-gray-800 rounded-xl p-5 mt-auto">
+                            <div class="flex items-center gap-2 mb-4">
+                                <i class="fas fa-tag text-primary"></i>
+                                <span class="text-white font-bold">Pricing Options</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">4 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$240</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">8 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$440</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">12 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$600</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal">
+                                    <span class="text-gray-300">16 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$720</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <a href="individual-sessions.html" class="block text-center py-3 px-6 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 w-full">Learn More &amp; Book</a>
+                    </div>
+                </div>
+
+                <!-- Group Sessions -->
+                <div id="group" class="bg-black rounded-2xl shadow-xl overflow-hidden flex flex-col">
+                    <div class="p-8 flex-grow flex flex-col">
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="bg-primary rounded-full h-12 w-12 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-users text-white text-lg"></i>
+                            </div>
+                            <h2 class="text-xl font-bold text-white">Group Sessions</h2>
+                        </div>
+                        <div class="flex items-start gap-2 text-gray-400 text-sm mb-2">
+                            <i class="fas fa-calendar-alt mt-1 flex-shrink-0 text-primary"></i>
+                            <span>TBD</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-gray-400 text-sm mb-2">
+                            <i class="fas fa-map-marker-alt mt-1 flex-shrink-0 text-primary"></i>
+                            <span>TBD</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-gray-400 text-sm mb-2">
+                            <i class="fas fa-users mt-1 flex-shrink-0 text-primary"></i>
+                            <span>2–6 players | 60 minutes</span>
+                        </div>
+                        <p class="text-gray-300 text-sm font-normal mt-4 mb-6">Small group sessions focused on developing players in a competitive, game-like environment. High-repetition scenarios, tactical understanding through guided play, and decision-making under pressure — with individual attention throughout.</p>
+                        <div class="bg-gray-800 rounded-xl p-5 mt-auto">
+                            <div class="flex items-center gap-2 mb-4">
+                                <i class="fas fa-tag text-primary"></i>
+                                <span class="text-white font-bold">Pricing Options</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">4 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$120</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">8 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$220</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">12 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$300</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal">
+                                    <span class="text-gray-300">16 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$360</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <a href="group-sessions.html" class="block text-center py-3 px-6 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 w-full">Learn More &amp; Book</a>
+                    </div>
+                </div>
+
+                <!-- Summer Development -->
+                <div id="summer" class="bg-black rounded-2xl shadow-xl overflow-hidden flex flex-col">
+                    <div class="p-8 flex-grow flex flex-col">
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="bg-primary rounded-full h-12 w-12 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-sun text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-bold text-white">Summer Development</h2>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-gray-400 text-sm mb-4">
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-calendar-alt mt-1 flex-shrink-0 text-primary"></i>
+                                <span>Tue &amp; Thu | 5:00–6:15 PM &amp; 6:30–7:45 PM | May 28 – Jul 30</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-map-marker-alt mt-1 flex-shrink-0 text-primary"></i>
+                                <span>Shawnee Mission North HS</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-users mt-1 flex-shrink-0 text-primary"></i>
+                                <span>Boys &amp; Girls, Ages 8–14</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm font-normal mb-6">Open group sessions in a structured, game-based environment focused on building confident, creative players while developing key physical qualities: agility, coordination, and speed.</p>
+                        <div class="bg-gray-800 rounded-xl p-5 mt-auto">
+                            <div class="flex items-center gap-2 mb-4">
+                                <i class="fas fa-tag text-primary"></i>
+                                <span class="text-white font-bold">Pricing Options</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">4 Sessions (Mini Pack)</span>
+                                    <span class="text-yellow-400 font-bold">$160</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">8 Sessions (Half Pack)</span>
+                                    <span class="text-yellow-400 font-bold">$280</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">Unlimited <span class="text-primary text-xs">Best Value</span></span>
+                                    <span class="text-yellow-400 font-bold">$420</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal">
+                                    <span class="text-gray-300">Pay-As-You-Go</span>
+                                    <span class="text-yellow-400 font-bold">$50 / session</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <a href="summer-dev.html" class="block text-center py-3 px-6 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 w-full">Learn More &amp; Register</a>
+                    </div>
+                </div>
+
+                <!-- Preseason Lab -->
+                <div id="preseason" class="bg-black rounded-2xl shadow-xl overflow-hidden flex flex-col">
+                    <div class="p-8 flex-grow flex flex-col">
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="bg-primary rounded-full h-12 w-12 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-dumbbell text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-bold text-white">Preseason Lab</h2>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-gray-400 text-sm mb-4">
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-calendar-alt mt-1 flex-shrink-0 text-primary"></i>
+                                <span>Tue &amp; Thu | 7:00–8:15 AM | Mon, Wed, Fri | May 26 - Jul 31</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-map-marker-alt mt-1 flex-shrink-0 text-primary"></i>
+                                <span>Hocker Grove MS | APC Facility</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-star mt-1 flex-shrink-0 text-primary"></i>
+                                <span>Outdoor &amp; Indoor Sessions</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm font-normal mb-6">A high-performance environment combining football-specific training with elite physical preparation. Led by David Ray-Campoy (BCN) and Mirko Trapletti (APC) to help players arrive sharper, stronger, and ready to perform.</p>
+                        <div class="bg-gray-800 rounded-xl p-5 mt-auto">
+                            <div class="flex items-center gap-2 mb-4">
+                                <i class="fas fa-tag text-primary"></i>
+                                <span class="text-white font-bold">Pricing Options</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">4 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$80</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">8 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$140</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal border-b border-gray-700 pb-2">
+                                    <span class="text-gray-300">12 Sessions</span>
+                                    <span class="text-yellow-400 font-bold">$240</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-normal">
+                                    <span class="text-gray-300">Unlimited <span class="text-primary text-xs">Best Value</span></span>
+                                    <span class="text-yellow-400 font-bold">$500</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <a href="pre-lab.html" class="block text-center py-3 px-6 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 w-full">Learn More &amp; Register</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+<footer class="bg-black text-white py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between">
+            <div class="mb-6 md:mb-0">
+                <h2 class="text-xl font-bold mb-4">BCN Fútbol Academy</h2>
+                <p class="text-gray-400 max-w-xs">Specialized soccer training focused on developing complete players through our Balance, Creativity, and Navigation methodology.</p>
+            </div>
+            <div class="mb-6 md:mb-0">
+                <h3 class="font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-primary">Home</a></li>
+                    <li><a href="programs.html" class="text-gray-400 hover:text-primary">Programs</a></li>
+                    <li><a href="contact.html" class="text-gray-400 hover:text-primary">Contact</a></li>
+                    <li><a href="book-now.html" class="text-gray-400 hover:text-primary">Book Now</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">Connect With Us</h3>
+                <div class="flex space-x-4 mb-4">
+                    <a href="https://www.instagram.com/bcn.futbolacademy/" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                        <i class="fab fa-instagram text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">Instagram</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/1AAVSxdPpg/?mibextid=wwXIfr" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
+                        <i class="fab fa-facebook-f text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://www.linkedin.com/company/bcn-fútbol-academy" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label="Connect with us on LinkedIn">
+                        <i class="fab fa-linkedin-in text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">LinkedIn</span>
+                    </a>
+                    <a href="mailto:bcnfutbolacademy@gmail.com" class="text-gray-400 hover:text-primary" aria-label="Email us">
+                        <i class="fas fa-envelope text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">Email</span>
+                    </a>
+                </div>
+                <div class="text-sm text-gray-400">
+                    <p class="mb-1">Instagram: @bcn.futbolacademy</p>
+                    <p class="mb-1">Facebook: BCN Fútbol Academy</p>
+                    <p class="mb-1">LinkedIn: BCN Fútbol Academy</p>
+                    <p>Email: bcnfutbolacademy@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
+        <p>&copy; 2026 BCN Fútbol Academy. All rights reserved.</p>
+    </div>
+</footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu toggle
+        const btn = document.querySelector('.mobile-menu-button');
+        const menu = document.querySelector('.mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                const open = !menu.classList.contains('hidden');
+                menu.classList.toggle('hidden');
+                btn.setAttribute('aria-expanded', !open);
+            });
+            }
+        </script>
+    </body>
+    </html>

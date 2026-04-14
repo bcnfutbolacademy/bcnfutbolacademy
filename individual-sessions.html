@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BCN Fútbol Academy — Individual Sessions: one-on-one personalized training focused on your development.">
+    <title>Individual Sessions — BCN Fútbol Academy</title>
+    <link rel="icon" type="image/png" href="assets/images/bcn-logo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/bcn-logo.png">
+    <link rel="apple-touch-icon" href="assets/images/bcn-logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            overflow-x: hidden;
+            background-color: #111827;
+            color: white;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+        }
+        .text-primary { color: #449b18; }
+        .bg-primary { background-color: #449b18; }
+        .logo-bcn { width: 50px; height: 50px; }
+        img { max-width: 100%; height: auto; }
+        nav { position: sticky; top: 0; z-index: 50; }
+
+        .hero-bg {
+            background-image: url('assets/images/hero-background.webp');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.80) 55%, rgba(0,0,0,0.35) 100%);
+        }
+
+        .price-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .price-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding-left: 16px; padding-right: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+<nav class="bg-black shadow-md">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center">
+            <img src="assets/images/bcn-logo.png" alt="BCN Futbol Academy Logo" class="logo-bcn">
+            <h1 class="ml-3 text-xl font-bold text-white">BCN Fútbol Academy</h1>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+            <a href="index.html" class="text-white hover:text-primary">Home</a>
+            <a href="programs.html" class="text-white hover:text-primary">Programs</a>
+            <a href="contact.html" class="text-white hover:text-primary">Contact</a>
+            <a href="book-now.html" class="bg-primary hover:bg-green-800 text-white font-bold px-5 py-2 rounded-full transition duration-300">Book Now</a>
+        </div>
+        <div class="md:hidden">
+            <button class="text-white mobile-menu-button" aria-label="Toggle mobile menu" aria-expanded="false">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden">
+        <a href="index.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Home</a>
+        <a href="programs.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Programs</a>
+        <a href="contact.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Contact</a>
+        <a href="book-now.html" class="block py-2 px-4 text-sm font-bold text-white bg-primary hover:bg-green-800">Book Now</a>
+    </div>
+</nav>
+
+    <!-- Back button -->
+    <!-- Hero Section -->
+    <section class="hero-bg py-16 md:py-24">
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Back button -->
+            <a href="programs.html" class="inline-flex items-center gap-2 text-gray-300 hover:text-white text-sm font-normal transition duration-200 mb-4">
+                <i class="fas fa-arrow-left"></i>
+                Back to Programs
+            </a>
+            <div class="flex flex-col lg:flex-row gap-10 items-center">
+
+                <!-- Left: content -->
+                <div class="flex-1 min-w-0">
+
+                    <!-- Tags -->
+                    <div class="flex gap-2 mb-5 flex-wrap">
+                        <span class="px-4 py-1 rounded-full text-sm font-bold text-white" style="background-color:#449b18;">All Ages</span>
+                        <span class="px-4 py-1 rounded-full text-sm font-bold text-white" style="background-color:#449b18;">1-on-1</span>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-5">Individual Sessions</h1>
+
+                    <!-- Description -->
+                    <p class="text-gray-200 text-base font-normal leading-relaxed mb-8 max-w-md">
+                        One-on-one sessions designed to accelerate player development through fully personalized, game-relevant training. Each session is built around the player's specific needs — from technical weaknesses to position-specific decision-making. Training includes detailed feedback and a progression plan tailored to help the player grow at every level.
+                    </p>
+
+                    <!-- Details + Includes stacked -->
+                    <div class="space-y-6">
+                        <!-- Details -->
+                        <div>
+                            <h3 class="text-primary font-bold text-lg mb-3">Details</h3>
+                            <div class="space-y-2 font-normal">
+                                <div class="flex items-center gap-3 text-gray-200 text-sm">
+                                    <i class="fas fa-calendar-alt text-primary w-4"></i>
+                                    <span>TBD — scheduled directly with coach</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-200 text-sm">
+                                    <i class="fas fa-map-marker-alt text-primary w-4"></i>
+                                    <span>TBD — location confirmed upon booking</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-200 text-sm">
+                                    <i class="fas fa-user text-primary w-4"></i>
+                                    <span>1 player | 60 minutes per session</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Includes -->
+                        <div>
+                            <h3 class="text-primary font-bold text-lg mb-3">Includes</h3>
+                            <div class="space-y-2 font-normal">
+                                <div class="flex items-center gap-3 text-gray-200 text-sm">
+                                    <i class="fas fa-check-circle text-primary w-4 flex-shrink-0"></i>
+                                    <span>Individual Development Plan tailored to the player</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-200 text-sm">
+                                    <i class="fas fa-check-circle text-primary w-4 flex-shrink-0"></i>
+                                    <span>Position-specific scenarios and decision-making</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-200 text-sm">
+                                    <i class="fas fa-check-circle text-primary w-4 flex-shrink-0"></i>
+                                    <span>Technical work applied to real-game situations</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-200 text-sm">
+                                    <i class="fas fa-check-circle text-primary w-4 flex-shrink-0"></i>
+                                    <span>Detailed feedback and progression tracking</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Pricing -->
+                <div class="w-full lg:w-96 flex-shrink-0">
+                    <div class="bg-black bg-opacity-60 rounded-2xl p-6 backdrop-blur-sm">
+                        <h2 class="text-xl font-bold text-white mb-1">Pricing Options</h2>
+                        <p class="text-gray-400 font-normal text-xs mb-5">Choose the package that fits your goals.</p>
+                        <div class="space-y-3">
+
+                            <!-- 4 Sessions -->
+                            <div class="price-card bg-gray-900 rounded-xl border border-gray-700 p-4 flex items-center justify-between gap-4">
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">4 Sessions</h3>
+                                    <p class="text-gray-400 font-normal text-xs mt-0.5">$60 per session</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <p class="text-2xl font-bold text-yellow-400">$240</p>
+                                    <a href="https://buy.stripe.com/6oU5kC7aG7vb0Q0e4S3AY00" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm whitespace-nowrap">Book</a>
+                                </div>
+                            </div>
+
+                            <!-- 8 Sessions -->
+                            <div class="price-card bg-gray-900 rounded-xl border border-gray-700 p-4 flex items-center justify-between gap-4">
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">8 Sessions</h3>
+                                    <p class="text-gray-400 font-normal text-xs mt-0.5">$55 per session</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <p class="text-2xl font-bold text-yellow-400">$440</p>
+                                    <a href="https://buy.stripe.com/14A14m1QmeXD7eo6Cq3AY01" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm whitespace-nowrap">Book</a>
+                                </div>
+                            </div>
+
+                            <!-- 12 Sessions -->
+                            <div class="price-card bg-gray-900 rounded-xl border border-gray-700 p-4 flex items-center justify-between gap-4">
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">12 Sessions</h3>
+                                    <p class="text-gray-400 font-normal text-xs mt-0.5">$50 per session</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <p class="text-2xl font-bold text-yellow-400">$600</p>
+                                    <a href="https://buy.stripe.com/3cI3cu8eK4iZ56ggd03AY02" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm whitespace-nowrap">Book</a>
+                                </div>
+                            </div>
+
+                            <!-- 16 Sessions -->
+                            <div class="price-card bg-gray-900 rounded-xl border border-gray-700 p-4 flex items-center justify-between gap-4 relative">
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">16 Sessions</h3>
+                                    <p class="text-gray-400 font-normal text-xs mt-0.5">$45 per session</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <p class="text-2xl font-bold text-yellow-400">$720</p>
+                                    <a href="https://buy.stripe.com/9B6fZgdz44iZ56g4ui3AY03" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm whitespace-nowrap">Book</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Tagline at bottom of hero -->
+            <p class="text-gray-400 font-normal text-sm mt-10 italic text-center">Individualized. Intentional. Player-Focused.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+<footer class="bg-black text-white py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between">
+            <div class="mb-6 md:mb-0">
+                <h2 class="text-xl font-bold mb-4">BCN Fútbol Academy</h2>
+                <p class="text-gray-400 max-w-xs">Specialized soccer training focused on developing complete players through our Balance, Creativity, and Navigation methodology.</p>
+            </div>
+            <div class="mb-6 md:mb-0">
+                <h3 class="font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-primary">Home</a></li>
+                    <li><a href="programs.html" class="text-gray-400 hover:text-primary">Programs</a></li>
+                    <li><a href="contact.html" class="text-gray-400 hover:text-primary">Contact</a></li>
+                    <li><a href="book-now.html" class="text-gray-400 hover:text-primary">Book Now</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">Connect With Us</h3>
+                <div class="flex space-x-4 mb-4">
+                    <a href="https://www.instagram.com/bcn.futbolacademy/" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                        <i class="fab fa-instagram text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">Instagram</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/1AAVSxdPpg/?mibextid=wwXIfr" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
+                        <i class="fab fa-facebook-f text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://www.linkedin.com/company/bcn-fútbol-academy" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label="Connect with us on LinkedIn">
+                        <i class="fab fa-linkedin-in text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">LinkedIn</span>
+                    </a>
+                    <a href="mailto:bcnfutbolacademy@gmail.com" class="text-gray-400 hover:text-primary" aria-label="Email us">
+                        <i class="fas fa-envelope text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">Email</span>
+                    </a>
+                </div>
+                <div class="text-sm text-gray-400">
+                    <p class="mb-1">Instagram: @bcn.futbolacademy</p>
+                    <p class="mb-1">Facebook: BCN Fútbol Academy</p>
+                    <p class="mb-1">LinkedIn: BCN Fútbol Academy</p>
+                    <p>Email: bcnfutbolacademy@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
+        <p>&copy; 2026 BCN Fútbol Academy. All rights reserved.</p>
+    </div>
+</footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const btn = document.querySelector('.mobile-menu-button');
+        const menu = document.querySelector('.mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                const open = !menu.classList.contains('hidden');
+                menu.classList.toggle('hidden');
+                btn.setAttribute('aria-expanded', !open);
+            });
+                }
+            </script>
+        
+        <!-- JavaScript -->
+            <script src="script.js"></script>
+        </body>
+        </html>

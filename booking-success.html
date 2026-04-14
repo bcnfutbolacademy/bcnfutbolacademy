@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BCN Fútbol Academy — Payment confirmed. Complete your booking.">
+    <title>Booking Confirmed — BCN Fútbol Academy</title>
+    <link rel="icon" type="image/png" href="assets/images/bcn-logo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/bcn-logo.png">
+    <link rel="apple-touch-icon" href="assets/images/bcn-logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            overflow-x: hidden;
+            background-color: #f9fafb;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+        }
+        .text-primary { color: #449b18; }
+        .bg-primary { background-color: #449b18; }
+        .logo-bcn { width: 50px; height: 50px; }
+        img { max-width: 100%; height: auto; }
+        nav { position: sticky; top: 0; z-index: 50; }
+        input, select, textarea { font-size: 16px; }
+        .step { display: none; }
+        .step.active { display: block; }
+        .progress-bar { transition: width 0.4s ease; }
+        .slot-card { transition: border-color 0.2s ease; }
+        .slot-card:hover { border-color: #449b18; }
+        @media (max-width: 768px) {
+            .container { padding-left: 16px; padding-right: 16px; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="bg-black shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <img src="assets/images/bcn-logo.png" alt="BCN Futbol Academy Logo" class="logo-bcn">
+                </a>
+                <a href="index.html" class="ml-3 text-xl font-bold text-white hover:text-primary transition duration-200">BCN Fútbol Academy</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-white hover:text-primary">Home</a>
+                <a href="programs.html" class="text-white hover:text-primary">Programs</a>
+                <a href="contact.html" class="text-white hover:text-primary">Contact</a>
+                <a href="book-now.html" class="bg-primary hover:bg-green-800 text-white font-bold px-5 py-2 rounded-full transition duration-300">Book Now</a>
+            </div>
+            <div class="md:hidden">
+                <button class="text-white mobile-menu-button" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu hidden md:hidden">
+            <a href="index.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Home</a>
+            <a href="programs.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Programs</a>
+            <a href="contact.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Contact</a>
+            <a href="book-now.html" class="block py-2 px-4 text-sm font-bold text-white bg-primary hover:bg-green-800">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="bg-black py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-primary text-3xl"></i>
+                <div>
+                    <h1 class="text-3xl font-bold text-white">Payment Confirmed</h1>
+                    <p class="text-gray-400 font-normal mt-1">Complete your player information to schedule your sessions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto">
+
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="flex justify-between text-sm font-normal text-gray-500 mb-2">
+                        <span id="step-label">Step 1 of 3 — Player Information</span>
+                        <span id="step-pct">33%</span>
+                    </div>
+                    <div class="w-full bg-gray-300 rounded-full h-2">
+                        <div id="progress-bar" class="progress-bar bg-primary h-2 rounded-full" style="width: 33%"></div>
+                    </div>
+                </div>
+
+                <!-- Package Summary Banner -->
+                <div class="bg-black rounded-xl p-5 mb-8 flex items-center justify-between flex-wrap gap-3">
+                    <div>
+                        <p class="text-white font-bold" id="package-name">Package confirmed</p>
+                        <p class="text-gray-400 font-normal text-sm" id="package-sessions">Your sessions are ready to be scheduled</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <p class="text-yellow-400 font-bold text-lg" id="package-price"></p>
+                        <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">Paid</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Player Information -->
+                <div id="step-1" class="step active">
+                    <div class="bg-white rounded-2xl shadow-sm p-8">
+                        <h2 class="text-xl font-bold text-gray-900 mb-6">Player Information</h2>
+                        <form id="player-form" class="space-y-5">
+
+                            <div>
+                                <label for="player-name" class="block text-gray-700 mb-2 text-sm">Player Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="player-name" name="player-name" placeholder="Full name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary font-normal" required>
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2 text-sm">Email <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="Email used at checkout" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary font-normal" required>
+                                <p class="text-xs text-gray-400 font-normal mt-1">Please use the same email from your Stripe payment.</p>
+                            </div>
+
+                            <div>
+                                <label for="phone" class="block text-gray-700 mb-2 text-sm">Phone Number <span class="text-red-500">*</span></label>
+                                <input type="tel" id="phone" name="phone" placeholder="(816) 000-0000" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary font-normal" required>
+                            </div>
+
+                            <div>
+                                <label for="age" class="block text-gray-700 mb-2 text-sm">Player Age <span class="text-red-500">*</span></label>
+                                <input type="number" id="age" name="age" placeholder="Age" min="3" max="40" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary font-normal" required>
+                            </div>
+
+                            <div id="guardian-field" class="hidden">
+                                <label for="guardian-name" class="block text-gray-700 mb-2 text-sm">Parent / Legal Guardian Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="guardian-name" name="guardian-name" placeholder="Full name of parent or guardian" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary font-normal">
+                                <p class="text-xs text-gray-400 font-normal mt-1">Required for players under 18.</p>
+                            </div>
+
+                            <div>
+                                <label for="level" class="block text-gray-700 mb-2 text-sm">Playing Level <span class="text-red-500">*</span></label>
+                                <select id="level" name="level" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary font-normal bg-white" required>
+                                    <option value="" disabled selected>Select your level</option>
+                                    <option value="beginner">Beginner</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="advanced">Advanced</option>
+                                    <option value="competitive">Competitive / Club</option>
+                                    <option value="college">College / Semi-Pro</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 mt-2">
+                                Continue to Schedule Sessions <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Step 2: Choose Sessions -->
+                <div id="step-2" class="step">
+                    <div class="bg-white rounded-2xl shadow-sm p-8">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Choose Your Sessions</h2>
+                        <p class="text-gray-500 font-normal text-sm mb-6">Select your preferred available slots below. A calendar invite will be sent to your email for each session booked.</p>
+
+                        <!-- Player Summary + Sessions Counter -->
+                        <div class="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-200 flex items-center justify-between flex-wrap gap-3">
+                            <div>
+                                <p class="text-xs text-gray-400 font-normal mb-1">Booking for</p>
+                                <p class="text-gray-900 font-bold" id="summary-name">—</p>
+                                <p class="text-gray-500 font-normal text-sm" id="summary-details">—</p>
+                            </div>
+                            <div class="bg-black rounded-xl px-4 py-2 text-center">
+                                <p class="text-yellow-400 font-bold text-sm" id="sessions-counter">— sessions remaining</p>
+                            </div>
+                        </div>
+
+                        <!-- Slots List -->
+                        <div id="slots-container" class="space-y-3 mb-6">
+                            <p class="text-center text-gray-400 font-normal py-8">
+                                <i class="fas fa-spinner fa-spin mr-2"></i>Loading available slots...
+                            </p>
+                        </div>
+
+                        <!-- Disclaimer -->
+                        <div class="text-center mt-2">
+                            <p class="text-primary font-bold text-sm">BOOK ALL YOUR SESSIONS NOW</p>
+                            <p class="text-black font-normal text-xs mt-1">You won't be able to return to this page to book remaining sessions.</p>
+                        </div>
+
+                        <p class="text-xs text-gray-400 font-normal mt-4 text-center">
+                            Having trouble? <a href="contact.html" class="text-primary hover:underline">Contact us</a> and we'll help you schedule.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Confirmation -->
+                <div id="step-3" class="step">
+                    <div class="bg-white rounded-2xl shadow-sm p-8 text-center">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-check text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-3">You're all set!</h2>
+                        <p class="text-gray-500 font-normal text-sm mb-2">Your sessions have been booked and calendar invites sent to your email.</p>
+                        <p class="text-gray-500 font-normal text-sm mb-8">We look forward to training with you. See you on the field.</p>
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                            <a href="index.html" class="inline-block px-6 py-2 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Back to Home</a>
+                            <a href="contact.html" class="inline-block px-6 py-2 border-2 border-gray-300 text-gray-600 hover:border-primary hover:text-primary font-bold rounded-full transition duration-300 text-sm">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-xl font-bold mb-4">BCN Fútbol Academy</h2>
+                    <p class="text-gray-400 max-w-xs font-normal">Specialized soccer training focused on developing complete players through our Balance, Creativity, and Navigation methodology.</p>
+                </div>
+                <div class="mb-6 md:mb-0">
+                    <h3 class="font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 font-normal">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary">Home</a></li>
+                        <li><a href="programs.html" class="text-gray-400 hover:text-primary">Programs</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-primary">Contact</a></li>
+                        <li><a href="book-now.html" class="text-gray-400 hover:text-primary">Book Now</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="https://www.instagram.com/bcn.futbolacademy/" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="https://www.facebook.com/share/1AAVSxdPpg/?mibextid=wwXIfr" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="https://www.linkedin.com/company/bcn-fútbol-academy" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="mailto:bcnfutbolacademy@gmail.com" class="text-gray-400 hover:text-primary"><i class="fas fa-envelope text-xl"></i></a>
+                    </div>
+                    <div class="text-sm text-gray-400 font-normal">
+                        <p class="mb-1">Instagram: @bcn.futbolacademy</p>
+                        <p class="mb-1">Facebook: BCN Fútbol Academy</p>
+                        <p>Email: bcnfutbolacademy@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400 font-normal">
+            <p>&copy; 2026 BCN Fútbol Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ─── CONFIG ───────────────────────────────────────────────
+        const SUPABASE_URL  = 'https://zixwfpkisslcejlehmpm.supabase.co';
+        const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppeHdmcGtpc3NsY2VqbGVobXBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxMjg1MDUsImV4cCI6MjA5MTcwNDUwNX0.md_A1PKKY6Vmai7gzcPa_QxwbZJolg9iwpeBUAOcuxk';
+        const EDGE_BASE     = 'https://zixwfpkisslcejlehmpm.supabase.co/functions/v1';
+
+        // ─── PACKAGE MAP ──────────────────────────────────────────
+        const PACKAGE_MAP = {
+            'individual-4':        { name: 'Individual Sessions', sessions: 4,    price: '$240' },
+            'individual-8':        { name: 'Individual Sessions', sessions: 8,    price: '$440' },
+            'individual-12':       { name: 'Individual Sessions', sessions: 12,   price: '$600' },
+            'individual-16':       { name: 'Individual Sessions', sessions: 16,   price: '$720' },
+            'group-4':             { name: 'Group Sessions',      sessions: 4,    price: '$120' },
+            'group-8':             { name: 'Group Sessions',      sessions: 8,    price: '$220' },
+            'group-12':            { name: 'Group Sessions',      sessions: 12,   price: '$300' },
+            'group-16':            { name: 'Group Sessions',      sessions: 16,   price: '$360' },
+            'summer-4':            { name: 'Summer Development',  sessions: 4,    price: '$160' },
+            'summer-8':            { name: 'Summer Development',  sessions: 8,    price: '$280' },
+            'summer-unlimited':    { name: 'Summer Development',  sessions: null, price: '$420' },
+            'summer-payg':         { name: 'Summer Development',  sessions: 1,    price: '$50'  },
+            'preseason-4':         { name: 'Preseason Lab',       sessions: 4,    price: '$80'  },
+            'preseason-8':         { name: 'Preseason Lab',       sessions: 8,    price: '$140' },
+            'preseason-12':        { name: 'Preseason Lab',       sessions: 12,   price: '$240' },
+            'preseason-unlimited': { name: 'Preseason Lab',       sessions: null, price: '$500' },
+        };
+
+        // ─── URL PARAMS ───────────────────────────────────────────
+        const params        = new URLSearchParams(window.location.search);
+        const packageKey    = params.get('package') || '';
+        const stripeSession = params.get('session_id') || '';
+        const packageInfo   = PACKAGE_MAP[packageKey] || { name: 'Your package', sessions: null, price: '' };
+        const programType   = packageKey.split('-')[0];
+
+        let sessionsRemaining = packageInfo.sessions;
+        let playerData = {};
+
+        // ─── MOBILE MENU ──────────────────────────────────────────
+        const btn = document.querySelector('.mobile-menu-button');
+        const menuEl = document.querySelector('.mobile-menu');
+        if (btn && menuEl) {
+            btn.addEventListener('click', () => {
+                const open = !menuEl.classList.contains('hidden');
+                menuEl.classList.toggle('hidden');
+                btn.setAttribute('aria-expanded', !open);
+            });
+        }
+
+        // ─── HELPERS ──────────────────────────────────────────────
+        function setStep(n) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-' + n).classList.add('active');
+            const pct = Math.round((n / 3) * 100);
+            document.getElementById('progress-bar').style.width = pct + '%';
+            document.getElementById('step-pct').textContent = pct + '%';
+            const labels = {
+                1: 'Step 1 of 3 — Player Information',
+                2: 'Step 2 of 3 — Choose Sessions',
+                3: 'Step 3 of 3 — Confirmed'
+            };
+            document.getElementById('step-label').textContent = labels[n];
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        function updateCounter() {
+            const el = document.getElementById('sessions-counter');
+            if (!el) return;
+            el.textContent = sessionsRemaining !== null
+                ? sessionsRemaining + ' session' + (sessionsRemaining !== 1 ? 's' : '') + ' remaining'
+                : 'Unlimited sessions';
+        }
+
+        function formatSlotTime(iso) {
+            const d = new Date(iso);
+            return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+                + ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        }
+
+        // ─── BANNER INIT ──────────────────────────────────────────
+        function initBanner(booking = null) {
+            const name     = booking ? PACKAGE_MAP[booking.package_key]?.name  || packageInfo.name  : packageInfo.name;
+            const price    = booking ? booking.price_paid || packageInfo.price : packageInfo.price;
+            const sessions = booking ? PACKAGE_MAP[booking.package_key]?.sessions : packageInfo.sessions;
+            sessionsRemaining = sessions;
+            document.getElementById('package-name').textContent = name;
+            document.getElementById('package-sessions').textContent = sessions
+                ? sessions + ' session' + (sessions > 1 ? 's' : '') + ' to schedule'
+                : 'Unlimited sessions to schedule';
+            document.getElementById('package-price').textContent = price || '';
+        }
+
+        // ─── STEP 1: VERIFY PAYMENT ───────────────────────────────
+        async function verifyPayment() {
+            if (!stripeSession) {
+                initBanner();
+                return;
+            }
+            try {
+                const res = await fetch(
+                    `${SUPABASE_URL}/rest/v1/bookings?stripe_session_id=eq.${stripeSession}&select=package_key,sessions_remaining,price_paid,email`,
+                    { headers: { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON } }
+                );
+                const data = await res.json();
+
+                if (!data || data.length === 0) {
+                    // Webhook still processing — show spinner and retry
+                    document.getElementById('step-1').innerHTML = `
+                        <div class="bg-white rounded-2xl shadow-sm p-8 text-center">
+                            <i class="fas fa-spinner fa-spin text-primary text-3xl mb-4"></i>
+                            <h2 class="text-xl font-bold text-gray-900 mb-2">Confirming your payment...</h2>
+                            <p class="text-gray-500 font-normal text-sm">This usually takes a few seconds. Please don't close this page.</p>
+                        </div>`;
+                    setTimeout(verifyPayment, 3000);
+                    return;
+                }
+
+                const booking = data[0];
+                sessionsRemaining = booking.sessions_remaining;
+
+                // No sessions left
+                if (sessionsRemaining !== null && sessionsRemaining <= 0) {
+                    document.getElementById('step-1').innerHTML = `
+                        <div class="bg-white rounded-2xl shadow-sm p-8 text-center">
+                            <i class="fas fa-calendar-times text-gray-400 text-3xl mb-4"></i>
+                            <h2 class="text-xl font-bold text-gray-900 mb-2">No sessions remaining</h2>
+                            <p class="text-gray-500 font-normal text-sm mb-6">You have used all sessions in this package.</p>
+                            <a href="book-now.html" class="inline-block px-6 py-2 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">View Packages</a>
+                        </div>`;
+                    return;
+                }
+
+                // Pre-fill email
+                if (booking.email) document.getElementById('email').value = booking.email;
+                initBanner(booking);
+
+            } catch (err) {
+                console.error('Verify error:', err);
+                initBanner();
+            }
+        }
+
+        // ─── GUARDIAN TOGGLE ──────────────────────────────────────
+        document.getElementById('age').addEventListener('input', function() {
+            const gf = document.getElementById('guardian-field');
+            const gi = document.getElementById('guardian-name');
+            if (parseInt(this.value) < 18) {
+                gf.classList.remove('hidden');
+                gi.setAttribute('required', 'required');
+            } else {
+                gf.classList.add('hidden');
+                gi.removeAttribute('required');
+            }
+        });
+
+        // ─── STEP 1 SUBMIT → SAVE INFO + GO TO STEP 2 ────────────
+        document.getElementById('player-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            playerData = {
+                player_name:   document.getElementById('player-name').value,
+                email:         document.getElementById('email').value,
+                phone:         document.getElementById('phone').value,
+                age:           parseInt(document.getElementById('age').value),
+                level:         document.getElementById('level').value,
+                guardian_name: document.getElementById('guardian-name').value || null,
+            };
+
+            // Save player info to Supabase
+            if (stripeSession) {
+                try {
+                    await fetch(`${SUPABASE_URL}/rest/v1/bookings?stripe_session_id=eq.${stripeSession}`, {
+                        method: 'PATCH',
+                        headers: {
+                            apikey: SUPABASE_ANON,
+                            Authorization: 'Bearer ' + SUPABASE_ANON,
+                            'Content-Type': 'application/json',
+                            Prefer: 'return=minimal',
+                        },
+                        body: JSON.stringify(playerData),
+                    });
+                } catch (err) { console.error('Save player error:', err); }
+            }
+
+            // Update step 2 summary
+            document.getElementById('summary-name').textContent = playerData.player_name;
+            document.getElementById('summary-details').textContent =
+                'Age ' + playerData.age + ' · ' + playerData.level.charAt(0).toUpperCase() + playerData.level.slice(1) + ' · ' + packageInfo.name;
+            updateCounter();
+
+            setStep(2);
+            loadSlots();
+        });
+
+        // ─── STEP 2: LOAD SLOTS ───────────────────────────────────
+        let allSlots = [];
+        let currentPage = 0;
+        const SLOTS_PER_PAGE = 10;
+
+        async function loadSlots() {
+            const container = document.getElementById('slots-container');
+            container.innerHTML = '<p class="text-center text-gray-400 font-normal py-8"><i class="fas fa-spinner fa-spin mr-2"></i>Loading available slots...</p>';
+
+            try {
+                const res = await fetch(`${EDGE_BASE}/get-slots?program=${programType}`, {
+                    headers: { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON },
+                });
+                const data = await res.json();
+                allSlots = data.slots || [];
+
+                if (allSlots.length === 0) {
+                    container.innerHTML = '<p class="text-center text-gray-500 font-normal py-8">No available slots at the moment. <a href="contact.html" class="text-primary hover:underline">Contact us</a> to arrange a time.</p>';
+                    return;
+                }
+
+                currentPage = 0;
+                renderSlots();
+
+            } catch (err) {
+                console.error('Load slots error:', err);
+                container.innerHTML = '<p class="text-center text-red-400 font-normal py-8">Failed to load slots. Please <a href="contact.html" class="text-primary underline">contact us</a>.</p>';
+            }
+        }
+
+        function renderSlots() {
+            const container = document.getElementById('slots-container');
+            const start = currentPage * SLOTS_PER_PAGE;
+            const end   = start + SLOTS_PER_PAGE;
+            const pageSlots = allSlots.slice(start, end);
+            const totalPages = Math.ceil(allSlots.length / SLOTS_PER_PAGE);
+
+            container.innerHTML = pageSlots.map(slot => `
+                <div class="slot-card bg-black rounded-xl p-4 flex items-center justify-between gap-4">
+                    <p class="text-white font-bold text-sm">${formatSlotTime(slot.start)}</p>
+                    <button onclick="bookSlot('${slot.id}','${slot.start}','${slot.end}',this)"
+                        class="flex-shrink-0 px-4 py-1.5 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">
+                        Book
+                    </button>
+                </div>`).join('');
+
+            // Pagination controls
+            if (totalPages > 1) {
+                container.innerHTML += `
+                    <div class="flex items-center justify-between pt-4">
+                        <button onclick="changePage(-1)" ${currentPage === 0 ? 'disabled' : ''}
+                            class="px-4 py-1.5 rounded-full font-bold text-sm transition duration-300 ${currentPage === 0 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800'}">
+                            ← Previous
+                        </button>
+                        <p class="text-gray-500 font-normal text-xs">Page ${currentPage + 1} of ${totalPages}</p>
+                        <button onclick="changePage(1)" ${currentPage === totalPages - 1 ? 'disabled' : ''}
+                            class="px-4 py-1.5 rounded-full font-bold text-sm transition duration-300 ${currentPage === totalPages - 1 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800'}">
+                            Next →
+                        </button>
+                    </div>`;
+            }
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(allSlots.length / SLOTS_PER_PAGE);
+            currentPage = Math.max(0, Math.min(currentPage + direction, totalPages - 1));
+            renderSlots();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        }
+
+        // ─── BOOK A SLOT ──────────────────────────────────────────
+        async function bookSlot(slotId, slotStart, slotEnd, bookBtn) {
+            // Enforce session limit
+            if (sessionsRemaining !== null && sessionsRemaining <= 0) {
+                alert('You have no sessions remaining. Please purchase a new package.');
+                return;
+            }
+
+            bookBtn.disabled = true;
+            bookBtn.textContent = 'Booking...';
+
+            try {
+                const res = await fetch(`${EDGE_BASE}/book-slot`, {
+                    method: 'POST',
+                    headers: {
+                        apikey: SUPABASE_ANON,
+                        Authorization: 'Bearer ' + SUPABASE_ANON,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        stripe_session_id: stripeSession,
+                        slot_id:           slotId,
+                        slot_start:        slotStart,
+                        slot_end:          slotEnd,
+                        player_name:       playerData.player_name,
+                        email:             playerData.email,
+                    }),
+                });
+
+                const result = await res.json();
+
+                if (result.error) {
+                    alert('Booking failed: ' + result.error);
+                    bookBtn.disabled = false;
+                    bookBtn.textContent = 'Book';
+                    return;
+                }
+
+                // Update session counter
+                sessionsRemaining = result.sessions_remaining;
+                updateCounter();
+
+                // Mark slot as booked
+                bookBtn.textContent = 'Booked';
+                bookBtn.className = 'flex-shrink-0 px-4 py-1.5 bg-gray-600 text-white font-bold rounded-full text-sm cursor-default';
+
+                // Disable all remaining Book buttons if no sessions left
+                if (sessionsRemaining !== null && sessionsRemaining <= 0) {
+                    document.querySelectorAll('#slots-container button').forEach(b => {
+                        if (b !== bookBtn) {
+                            b.disabled = true;
+                            b.textContent = 'Unavailable';
+                            b.className = 'flex-shrink-0 px-4 py-1.5 bg-gray-700 text-gray-500 font-bold rounded-full text-sm cursor-not-allowed';
+                        }
+                    });
+                    // Auto-advance to confirmation after short delay
+                    setTimeout(() => setStep(3), 1200);
+                }
+
+            } catch (err) {
+                console.error('Book slot error:', err);
+                alert('Something went wrong. Please try again or contact us.');
+                bookBtn.disabled = false;
+                bookBtn.textContent = 'Book';
+            }
+        }
+
+        // ─── INIT ─────────────────────────────────────────────────
+        verifyPayment();
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

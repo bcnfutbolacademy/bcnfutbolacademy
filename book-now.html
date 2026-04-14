@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BCN Fútbol Academy — Book your training session. Choose from Individual, Group, Summer Development, or Preseason Lab programs.">
+    <title>Book Now — BCN Fútbol Academy</title>
+    <link rel="icon" type="image/png" href="assets/images/bcn-logo.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/bcn-logo.png">
+    <link rel="apple-touch-icon" href="assets/images/bcn-logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            overflow-x: hidden;
+            background-color: #f9fafb;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+        }
+        .text-primary { color: #449b18; }
+        .bg-primary { background-color: #449b18; }
+        .logo-bcn { width: 50px; height: 50px; }
+        img { max-width: 100%; height: auto; }
+        nav { position: sticky; top: 0; z-index: 50; }
+
+        .pkg-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .pkg-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding-left: 16px; padding-right: 16px; }
+            input, select, textarea { font-size: 16px; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="bg-black shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <img src="assets/images/bcn-logo.png" alt="BCN Futbol Academy Logo" class="logo-bcn">
+                </a>
+                <a href="index.html" class="ml-3 text-xl font-bold text-white hover:text-primary transition duration-200">BCN Fútbol Academy</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-white hover:text-primary">Home</a>
+                <a href="programs.html" class="text-white hover:text-primary">Programs</a>
+                <a href="contact.html" class="text-white hover:text-primary">Contact</a>
+                <a href="book-now.html" class="bg-primary hover:bg-green-800 text-white font-bold px-5 py-2 rounded-full transition duration-300">Book Now</a>
+            </div>
+            <div class="md:hidden">
+                <button class="text-white mobile-menu-button" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu hidden md:hidden">
+            <a href="index.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Home</a>
+            <a href="programs.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Programs</a>
+            <a href="contact.html" class="block py-2 px-4 text-sm text-white hover:bg-primary">Contact</a>
+            <a href="book-now.html" class="block py-2 px-4 text-sm font-bold text-white bg-primary hover:bg-green-800">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="bg-black py-8">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-white">Book Now</h1>
+            <p class="text-gray-400 font-normal mt-1">Choose a program and package to get started.</p>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4 space-y-14">
+ 
+            <!-- Individual Sessions -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-primary rounded-full h-10 w-10 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-user text-white"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Individual Sessions</h2>
+                        <p class="text-gray-500 font-normal text-sm">1 player | 60 minutes</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Individual</p>
+                        <h3 class="text-white font-bold text-lg mb-3">4 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$60 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$240</p>
+                        <a href="https://buy.stripe.com/6oU5kC7aG7vb0Q0e4S3AY00" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Individual</p>
+                        <h3 class="text-white font-bold text-lg mb-3">8 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$55 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$440</p>
+                        <a href="https://buy.stripe.com/14A14m1QmeXD7eo6Cq3AY01" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Individual</p>
+                        <h3 class="text-white font-bold text-lg mb-3">12 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$50 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$600</p>
+                        <a href="https://buy.stripe.com/3cI3cu8eK4iZ56ggd03AY02" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Individual</p>
+                        <h3 class="text-white font-bold text-lg mb-3">16 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$45 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$720</p>
+                        <a href="https://buy.stripe.com/9B6fZgdz44iZ56g4ui3AY03" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Group Sessions -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-primary rounded-full h-10 w-10 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-users text-white"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Group Sessions</h2>
+                        <p class="text-gray-500 font-normal text-sm">2–6 players | 60 minutes</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Group</p>
+                        <h3 class="text-white font-bold text-lg mb-3">4 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$30 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$120</p>
+                        <a href="https://buy.stripe.com/6oU5kC9iO5n342ce4S3AY04" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Group</p>
+                        <h3 class="text-white font-bold text-lg mb-3">8 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$27.50 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$220</p>
+                        <a href="https://buy.stripe.com/14AfZg66C6r756ge4S3AY05" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Group</p>
+                        <h3 class="text-white font-bold text-lg mb-3">12 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$25 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$300</p>
+                        <a href="https://buy.stripe.com/4gMbJ08eK9Dj6ak3qe3AY06" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Group</p>
+                        <h3 class="text-white font-bold text-lg mb-3">16 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$22.50 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$360</p>
+                        <a href="https://buy.stripe.com/7sY8wOamScPvdCM9OC3AY07" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Summer Development -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-primary rounded-full h-10 w-10 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-sun text-white"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Summer Development</h2>
+                        <p class="text-gray-500 font-normal text-sm">Boys & Girls, Ages 8–14 | 75 minutes</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Summer Development</p>
+                        <h3 class="text-white font-bold text-lg mb-3">4 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$40 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$160</p>
+                        <a href="https://buy.stripe.com/bJedR8amSbLr1U40e23AY08" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Summer Development</p>
+                        <h3 class="text-white font-bold text-lg mb-3">8 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$35 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$280</p>
+                        <a href="https://buy.stripe.com/bJeeVc3Yu16N2Y85ym3AY09" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col border-2 border-yellow-400 relative">
+                        <span class="absolute -top-3 left-4 bg-yellow-400 text-black text-xs font-bold px-3 py-0.5 rounded-full">Best Value</span>
+                        <p class="text-gray-400 font-normal text-xs mb-1">Summer Development</p>
+                        <h3 class="text-white font-bold text-lg mb-3">Unlimited</h3>
+                        <p class="text-gray-400 font-normal text-sm">All sessions</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$420</p>
+                        <a href="https://buy.stripe.com/8x214meD84iZfKUf8W3AY0a" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Summer Development</p>
+                        <h3 class="text-white font-bold text-lg mb-3">Pay-As-You-Go</h3>
+                        <p class="text-gray-400 font-normal text-sm">One session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$50</p>
+                        <a href="https://buy.stripe.com/7sYfZgcv09Dj6ak1i63AY0f" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Preseason Lab -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-primary rounded-full h-10 w-10 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-dumbbell text-white"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Preseason Lab</h2>
+                        <p class="text-gray-500 font-normal text-sm">BCN × APC | Outdoor & Indoor</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Preseason Lab</p>
+                        <h3 class="text-white font-bold text-lg mb-3">4 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$20 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$80</p>
+                        <a href="https://buy.stripe.com/eVq6oG9iOcPv42c2ma3AY0b" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Preseason Lab</p>
+                        <h3 class="text-white font-bold text-lg mb-3">8 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$17.50 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$140</p>
+                        <a href="https://buy.stripe.com/aFa7sKeD8bLrbuEaSG3AY0c" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col">
+                        <p class="text-gray-400 font-normal text-xs mb-1">Preseason Lab</p>
+                        <h3 class="text-white font-bold text-lg mb-3">12 Sessions</h3>
+                        <p class="text-gray-400 font-normal text-sm">$20 / session</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$240</p>
+                        <a href="https://buy.stripe.com/aFadR81Qm3eV8isf8W3AY0d" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                    <div class="pkg-card bg-black rounded-xl p-5 flex flex-col border-2 border-yellow-400 relative">
+                        <span class="absolute -top-3 left-4 bg-yellow-400 text-black text-xs font-bold px-3 py-0.5 rounded-full">Best Value</span>
+                        <p class="text-gray-400 font-normal text-xs mb-1">Preseason Lab</p>
+                        <h3 class="text-white font-bold text-lg mb-3">Unlimited</h3>
+                        <p class="text-gray-400 font-normal text-sm">Full preseason access</p>
+                        <p class="text-yellow-400 font-bold text-2xl mt-1 mb-4">$500</p>
+                        <a href="https://buy.stripe.com/aFacN49iO02JbuEaSG3AY0e" target="_blank" rel="noopener noreferrer" class="mt-auto block text-center py-2 px-4 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">Book Now</a>
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-xl font-bold mb-4">BCN Fútbol Academy</h2>
+                    <p class="text-gray-400 max-w-xs font-normal">Specialized soccer training focused on developing complete players through our Balance, Creativity, and Navigation methodology.</p>
+                </div>
+                <div class="mb-6 md:mb-0">
+                    <h3 class="font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 font-normal">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary">Home</a></li>
+                        <li><a href="programs.html" class="text-gray-400 hover:text-primary">Programs</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-primary">Contact</a></li>
+                        <li><a href="book-now.html" class="text-gray-400 hover:text-primary">Book Now</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="https://www.instagram.com/bcn.futbolacademy/" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1AAVSxdPpg/?mibextid=wwXIfr" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/bcn-fútbol-academy" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label="Connect with us on LinkedIn">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="/cdn-cgi/l/email-protection#0361606d657677616c6f62606267666e7a43646e626a6f2d606c6e" class="text-gray-400 hover:text-primary" aria-label="Email us">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm text-gray-400 font-normal">
+                        <p class="mb-1">Instagram: @bcn.futbolacademy</p>
+                        <p class="mb-1">Facebook: BCN Fútbol Academy</p>
+                        <p class="mb-1">LinkedIn: BCN Fútbol Academy</p>
+                        <p class="mb-1">Email: bcnfutbolacademy@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400 font-normal">
+            <p>&copy; 2026 BCN Fútbol Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const btn = document.querySelector('.mobile-menu-button');
+        const menu = document.querySelector('.mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');
+            });
+        }
+    </script>
+
+    <!-- JavaScript -->
+        <script src="script.js"></script>
+    
+    </body>
+</html>
