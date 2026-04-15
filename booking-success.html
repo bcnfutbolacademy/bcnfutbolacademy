@@ -531,7 +531,7 @@
             bookBtn.textContent = 'Booking...';
 
             try {
-                const res = await fetch(`${EDGE_BASE}/book-slot`, {
+                const res = await fetch(`${EDGE_BASE}/book-slots`, {
                     method: 'POST',
                     headers: {
                         apikey: SUPABASE_ANON,
