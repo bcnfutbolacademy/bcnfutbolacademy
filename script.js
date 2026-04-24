@@ -21,9 +21,9 @@ const STRIPE_LINKS = {
         'payg':      'https://buy.stripe.com/7sYfZgcv09Dj6ak1i63AY0f'
     },
     preseason: {
-        '4':         'https://buy.stripe.com/eVq6oG9iOcPv42c2ma3AY0b',
-        '8':         'https://buy.stripe.com/aFa7sKeD8bLrbuEaSG3AY0c',
-        '12':        'https://buy.stripe.com/aFadR81Qm3eV8isf8W3AY0d',
+        '5':         'https://buy.stripe.com/eVq6oG9iOcPv42c2ma3AY0b',
+        '10':         'https://buy.stripe.com/aFa7sKeD8bLrbuEaSG3AY0c',
+        '20':        'https://buy.stripe.com/aFadR81Qm3eV8isf8W3AY0d',
         'unlimited': 'https://buy.stripe.com/aFacN49iO02JbuEaSG3AY0e'
     }
 };
