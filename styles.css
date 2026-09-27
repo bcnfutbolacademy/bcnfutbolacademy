@@ -387,3 +387,92 @@ footer.bg-black {
     .stats-card > .text-center { padding: .25rem .4rem; }
     .stats-card .text-sm { font-size: .6rem !important; letter-spacing: .05em; }
 }
+
+/* ==========================================================================
+   Cards — glass, matching the stats card
+   ========================================================================== */
+:root {
+    --pitch-lines-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 700' fill='none' stroke='%23000000' stroke-opacity='.07' stroke-width='2'%3E%3Crect x='40' y='40' width='1120' height='620' rx='4'/%3E%3Cline x1='600' y1='40' x2='600' y2='660'/%3E%3Ccircle cx='600' cy='350' r='95'/%3E%3Crect x='40' y='190' width='170' height='320'/%3E%3Crect x='40' y='270' width='60' height='160'/%3E%3Crect x='990' y='190' width='170' height='320'/%3E%3Crect x='1100' y='270' width='60' height='160'/%3E%3Cpath d='M210 290 A 75 75 0 0 1 210 410'/%3E%3Cpath d='M990 290 A 75 75 0 0 0 990 410'/%3E%3C/svg%3E");
+    --glass-dark: rgba(14, 14, 14, .80);
+    --glass-dark-edge: rgba(255, 255, 255, .10);
+    --glass-light: rgba(255, 255, 255, .62);
+    --glass-light-edge: rgba(255, 255, 255, .85);
+}
+
+/* Give card grids something to sit on: faint pitch markings + stronger glows */
+#programs.bg-gray-100,
+body > section.py-16.bg-gray-100 {
+    background-image:
+        var(--pitch-lines-dark),
+        radial-gradient(40rem 30rem at 15% 20%, rgba(68,155,24,.16), transparent 60%),
+        radial-gradient(40rem 30rem at 85% 80%, rgba(255,223,0,.18), transparent 60%),
+        var(--dots-dark) !important;
+    background-size: min(1300px, 160%) auto, auto, auto, 22px 22px !important;
+    background-position: center, center, center, 0 0 !important;
+    background-repeat: no-repeat, no-repeat, no-repeat, repeat !important;
+}
+#partnerships.bg-gray-100 {
+    background-image:
+        radial-gradient(45rem 28rem at 10% 90%, rgba(68,155,24,.16), transparent 60%),
+        radial-gradient(40rem 26rem at 95% 10%, rgba(255,223,0,.18), transparent 60%),
+        var(--dots-dark) !important;
+    background-size: auto, auto, 22px 22px !important;
+}
+
+/* Dark cards → dark glass */
+.bg-black.rounded-lg,
+.bg-black.rounded-xl,
+.bg-black.rounded-2xl {
+    background: linear-gradient(180deg, rgba(24,24,24,.90) 0%, rgba(6,6,6,.86) 100%) !important;
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid var(--glass-dark-edge);
+    box-shadow: 0 24px 48px -24px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+.card-coming-soon,
+.bg-black.card-coming-soon {
+    background: linear-gradient(160deg, rgba(11,26,43,.92) 0%, rgba(6,6,6,.86) 70%) !important;
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+.bg-gray-800.rounded-xl { background: rgba(255,255,255,.06) !important; border: 1px solid rgba(255,255,255,.08); }
+
+/* Hover: green edge glow */
+.program-card:hover, .pkg-card:hover {
+    border-color: rgba(68,155,24,.6) !important;
+    box-shadow: 0 30px 60px -28px rgba(0,0,0,.6), 0 0 0 1px rgba(68,155,24,.35), 0 0 40px -12px rgba(68,155,24,.55), inset 0 1px 0 rgba(255,255,255,.1) !important;
+}
+
+/* Package / price cards on the photo-hero detail pages */
+.hero-bg .bg-black.bg-opacity-60 {
+    background: rgba(10,10,10,.55) !important;
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255,255,255,.12);
+}
+.price-card.bg-gray-900 {
+    background: rgba(255,255,255,.05) !important;
+    border-color: rgba(255,255,255,.10) !important;
+}
+.price-card.bg-gray-900:hover { background: rgba(255,255,255,.08) !important; }
+
+/* Light cards → frosted white glass */
+.partner-card,
+#about .bg-white.rounded-lg,
+.bg-gray-100.p-6.rounded-lg,
+.bg-white.rounded-2xl {
+    background: var(--glass-light) !important;
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid var(--glass-light-edge) !important;
+    box-shadow: 0 18px 40px -24px rgba(0,0,0,.25), inset 0 1px 0 #fff !important;
+}
+.partner-card:hover, #about .bg-white.rounded-lg:hover {
+    box-shadow: 0 24px 48px -24px rgba(0,0,0,.3), 0 0 0 1px rgba(68,155,24,.25), inset 0 1px 0 #fff !important;
+}
+
+/* Browsers without backdrop-filter: fall back to near-solid */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .bg-black.rounded-lg, .bg-black.rounded-xl, .bg-black.rounded-2xl { background: #121212 !important; }
+    .partner-card, #about .bg-white.rounded-lg, .bg-gray-100.p-6.rounded-lg, .bg-white.rounded-2xl { background: rgba(255,255,255,.92) !important; }
+}
