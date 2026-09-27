@@ -95,14 +95,14 @@ a.rounded-full, button.rounded-full {
 }
 a.bg-primary.rounded-full, button.bg-primary.rounded-full {
     background-image: linear-gradient(180deg, #4fae1d 0%, var(--bcn-green) 100%);
-    box-shadow: 0 8px 20px -10px rgba(68,155,24,.9), inset 0 1px 0 rgba(255,255,255,.18);
+    box-shadow: 0 8px 20px -10px rgba(68,155,24,0.54), inset 0 1px 0 rgba(255,255,255,.18);
     letter-spacing: .005em;
 }
 a.bg-primary.rounded-full:hover, button.bg-primary.rounded-full:hover {
     background-image: linear-gradient(180deg, var(--bcn-green) 0%, var(--bcn-green-700) 100%);
     background-color: var(--bcn-green-700) !important;
     transform: translateY(-1px);
-    box-shadow: 0 12px 24px -10px rgba(68,155,24,.95), inset 0 1px 0 rgba(255,255,255,.15);
+    box-shadow: 0 12px 24px -10px rgba(68,155,24,0.57), inset 0 1px 0 rgba(255,255,255,.15);
 }
 a.rounded-full:active, button.rounded-full:active { transform: translateY(0); }
 
@@ -148,7 +148,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 /* Icon discs */
 .bg-primary.rounded-full.h-16, .bg-primary.rounded-full.h-12, .bg-primary.rounded-full.h-10 {
     background-image: radial-gradient(120% 120% at 30% 20%, #5cc427 0%, var(--bcn-green) 55%, var(--bcn-green-700) 100%);
-    box-shadow: 0 0 0 6px rgba(68,155,24,.14), 0 8px 18px -8px rgba(68,155,24,.8);
+    box-shadow: 0 0 0 6px rgba(68,155,24,0.084), 0 8px 18px -8px rgba(68,155,24,0.48);
 }
 
 /* ---------- Home hero ---------- */
@@ -212,7 +212,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="number"]
 }
 input:focus, select:focus, textarea:focus {
     border-color: var(--bcn-green) !important;
-    box-shadow: 0 0 0 4px rgba(68,155,24,.15);
+    box-shadow: 0 0 0 4px rgba(68,155,24,0.09);
 }
 .bg-gray-100.p-6.rounded-lg { border-radius: var(--radius-card) !important; border: 1px solid var(--line-light); background: #fff !important; box-shadow: var(--shadow-sm); }
 
@@ -293,15 +293,15 @@ footer a { transition: color .2s var(--ease); }
 section.bg-gray-100,
 section.bg-white {
     background-image:
-        radial-gradient(60rem 28rem at 8% -10%, rgba(68,155,24,.10), transparent 60%),
-        radial-gradient(50rem 26rem at 105% 110%, rgba(255,223,0,.12), transparent 60%),
+        radial-gradient(60rem 28rem at 8% -10%, rgba(68,155,24,0.06), transparent 60%),
+        radial-gradient(50rem 26rem at 105% 110%, rgba(255,223,0,0.072), transparent 60%),
         var(--dots-dark) !important;
     background-size: auto, auto, 22px 22px !important;
 }
 section#about.bg-white {
     background-image:
-        radial-gradient(55rem 30rem at 100% 0%, rgba(68,155,24,.08), transparent 60%),
-        radial-gradient(40rem 24rem at 0% 100%, rgba(255,223,0,.10), transparent 60%),
+        radial-gradient(55rem 30rem at 100% 0%, rgba(68,155,24,0.048), transparent 60%),
+        radial-gradient(40rem 24rem at 0% 100%, rgba(255,223,0,0.06), transparent 60%),
         var(--dots-dark) !important;
 }
 
@@ -320,8 +320,8 @@ section#about.bg-white {
 body > div.bg-black.py-8,
 body > section.bg-black.text-white.py-8 {
     background-image:
-        radial-gradient(60rem 22rem at 0% 0%, rgba(68,155,24,.35), transparent 60%),
-        radial-gradient(40rem 18rem at 100% 100%, rgba(255,223,0,.10), transparent 60%),
+        radial-gradient(60rem 22rem at 0% 0%, rgba(68,155,24,0.21), transparent 60%),
+        radial-gradient(40rem 18rem at 100% 100%, rgba(255,223,0,0.06), transparent 60%),
         var(--dots-light),
         linear-gradient(#050505, #050505) !important;
     background-size: auto, auto, 18px 18px, auto !important;
@@ -331,8 +331,8 @@ body > section.bg-black.text-white.py-8 {
 /* Footer: a low green glow */
 footer.bg-black {
     background-image:
-        radial-gradient(50rem 20rem at 0% 0%, rgba(68,155,24,.18), transparent 60%),
-        radial-gradient(40rem 18rem at 100% 100%, rgba(255,223,0,.06), transparent 60%),
+        radial-gradient(50rem 20rem at 0% 0%, rgba(68,155,24,0.108), transparent 60%),
+        radial-gradient(40rem 18rem at 100% 100%, rgba(255,223,0,0.036), transparent 60%),
         linear-gradient(#050505, #050505) !important;
 }
 
@@ -404,8 +404,8 @@ footer.bg-black {
 body > section.py-16.bg-gray-100 {
     background-image:
         var(--pitch-lines-dark),
-        radial-gradient(40rem 30rem at 15% 20%, rgba(68,155,24,.16), transparent 60%),
-        radial-gradient(40rem 30rem at 85% 80%, rgba(255,223,0,.18), transparent 60%),
+        radial-gradient(40rem 30rem at 15% 20%, rgba(68,155,24,0.096), transparent 60%),
+        radial-gradient(40rem 30rem at 85% 80%, rgba(255,223,0,0.108), transparent 60%),
         var(--dots-dark) !important;
     background-size: min(1300px, 160%) auto, auto, auto, 22px 22px !important;
     background-position: center, center, center, 0 0 !important;
@@ -413,8 +413,8 @@ body > section.py-16.bg-gray-100 {
 }
 #partnerships.bg-gray-100 {
     background-image:
-        radial-gradient(45rem 28rem at 10% 90%, rgba(68,155,24,.16), transparent 60%),
-        radial-gradient(40rem 26rem at 95% 10%, rgba(255,223,0,.18), transparent 60%),
+        radial-gradient(45rem 28rem at 10% 90%, rgba(68,155,24,0.096), transparent 60%),
+        radial-gradient(40rem 26rem at 95% 10%, rgba(255,223,0,0.108), transparent 60%),
         var(--dots-dark) !important;
     background-size: auto, auto, 22px 22px !important;
 }
@@ -440,7 +440,7 @@ body > section.py-16.bg-gray-100 {
 /* Hover: green edge glow */
 .program-card:hover, .pkg-card:hover {
     border-color: rgba(68,155,24,.6) !important;
-    box-shadow: 0 30px 60px -28px rgba(0,0,0,.6), 0 0 0 1px rgba(68,155,24,.35), 0 0 40px -12px rgba(68,155,24,.55), inset 0 1px 0 rgba(255,255,255,.1) !important;
+    box-shadow: 0 30px 60px -28px rgba(0,0,0,.6), 0 0 0 1px rgba(68,155,24,0.21), 0 0 40px -12px rgba(68,155,24,0.33), inset 0 1px 0 rgba(255,255,255,.1) !important;
 }
 
 /* Package / price cards on the photo-hero detail pages */
@@ -468,7 +468,7 @@ body > section.py-16.bg-gray-100 {
     box-shadow: 0 18px 40px -24px rgba(0,0,0,.25), inset 0 1px 0 #fff !important;
 }
 .partner-card:hover, #about .bg-white.rounded-lg:hover {
-    box-shadow: 0 24px 48px -24px rgba(0,0,0,.3), 0 0 0 1px rgba(68,155,24,.25), inset 0 1px 0 #fff !important;
+    box-shadow: 0 24px 48px -24px rgba(0,0,0,.3), 0 0 0 1px rgba(68,155,24,0.15), inset 0 1px 0 #fff !important;
 }
 
 /* Browsers without backdrop-filter: fall back to near-solid */
