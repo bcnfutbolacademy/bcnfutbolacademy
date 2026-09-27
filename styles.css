@@ -1,0 +1,94 @@
+/* BCN Fútbol Academy — shared refinements
+   Loaded after each page's inline <style>, so these rules win. */
+
+:root {
+    --bcn-green: #449b18;
+    --bcn-green-dark: #2f6f10;
+    --bcn-yellow: #ffdf00;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Body copy was bold sitewide; keep headings/buttons strong, let text breathe */
+body {
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+p { line-height: 1.65; }
+h1, h2, h3, h4, h5, h6 { letter-spacing: -0.01em; line-height: 1.2; }
+
+nav a,
+footer h2, footer h3,
+button, .btn, [role="button"],
+a.rounded-full,
+.font-semibold-keep { font-weight: 600; }
+
+/* Sticky nav on every page */
+nav { position: sticky; top: 0; z-index: 50; }
+[id] { scroll-margin-top: 84px; }
+
+/* Keyboard focus that's actually visible */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--bcn-yellow);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+/* Buttons: consistent motion */
+a.rounded-full, button.rounded-full {
+    transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+a.rounded-full:hover, button.rounded-full:hover { transform: translateY(-1px); }
+
+/* Program cards (home) */
+.program-card { transition: transform .2s ease, box-shadow .2s ease; }
+.program-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(0,0,0,.25); }
+
+/* "Coming soon" treatment */
+.coming-soon-badge {
+    display: inline-block;
+    background: var(--bcn-yellow);
+    color: #000;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: .2rem .65rem;
+    border-radius: 9999px;
+    line-height: 1.4;
+    vertical-align: middle;
+}
+.card-coming-soon {
+    background-image: linear-gradient(160deg, #0b1a2b 0%, #000 70%);
+    border: 1px solid rgba(255,223,0,.35);
+}
+
+/* Partner cards */
+.partner-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    border-top: 4px solid var(--bcn-green);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.partner-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,.12); }
+.partner-logo {
+    height: 64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.partner-logo img { max-height: 64px; max-width: 150px; width: auto; object-fit: contain; }
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+}
