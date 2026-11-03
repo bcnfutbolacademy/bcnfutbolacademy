@@ -310,12 +310,17 @@
         };
 
         // Where each program trains (shown next to every slot)
+        const LOCATIONS = {
+            scc: { name: 'Soccer City KC',             address: '2602 E 9th St, Kansas City, MO 64124',    map: 'https://www.google.com/maps/search/?api=1&query=Soccer+City+KC%2C+2602+E+9th+St%2C+Kansas+City%2C+MO+64124' },
+            apc: { name: 'Atletas Performance Center', address: '11301 W 88th St, Overland Park, KS 66214', map: 'https://www.google.com/maps/search/?api=1&query=Atletas+Performance+Center%2C+11301+W+88th+St%2C+Overland+Park%2C+KS+66214' },
+            hg:  { name: 'Hocker Grove MS',            address: '10400 Johnson Dr, Shawnee, KS 66203',     map: 'https://www.google.com/maps/search/?api=1&query=Hocker+Grove+Middle+School%2C+10400+Johnson+Dr%2C+Shawnee%2C+KS+66203' },
+        };
         const PROGRAM_LOCATION = {
-            indhg:     () => 'Hocker Grove MS',
-            indapc:    () => 'Atletas Performance Center',
-            winterrec: () => 'Soccer City KC',
-            winteru8:  (d) => d.getDay() === 3 ? 'Soccer City KC' : 'Atletas Performance Center',
-            winteru13: (d) => d.getDay() === 3 ? 'Soccer City KC' : 'Atletas Performance Center',
+            indhg:     () => LOCATIONS.hg,
+            indapc:    () => LOCATIONS.apc,
+            winterrec: () => LOCATIONS.scc,
+            winteru8:  (d) => d.getDay() === 3 ? LOCATIONS.scc : LOCATIONS.apc,
+            winteru13: (d) => d.getDay() === 3 ? LOCATIONS.scc : LOCATIONS.apc,
         };
 
         // ─── URL PARAMS ───────────────────────────────────────────
@@ -362,7 +367,7 @@
 
         function slotLocation(iso) {
             const fn = PROGRAM_LOCATION[programType];
-            if (!fn) return '';
+            if (!fn) return null;
             // Day of week in Kansas City time
             const kc = new Date(new Date(iso).toLocaleString('en-US', { timeZone: 'America/Chicago' }));
             return fn(kc);
@@ -543,7 +548,7 @@
                 <div class="slot-card bg-black rounded-xl p-4 flex items-center justify-between gap-4">
                     <div>
                         <p class="text-white font-bold text-sm">${formatSlotTime(slot.start)}</p>
-                        ${slotLocation(slot.start) ? `<p class="text-gray-400 font-normal text-xs mt-0.5"><i class="fas fa-map-marker-alt text-primary mr-1"></i>${slotLocation(slot.start)}</p>` : ''}
+                        ${slotLocation(slot.start) ? `<a href="${slotLocation(slot.start).map}" target="_blank" rel="noopener noreferrer" class="block text-gray-400 hover:text-yellow-400 font-normal text-xs mt-0.5"><i class="fas fa-map-marker-alt text-primary mr-1"></i>${slotLocation(slot.start).name} · ${slotLocation(slot.start).address}</a>` : ''}
                     </div>
                     <button onclick="bookSlot('${slot.id}','${slot.start}','${slot.end}',this)"
                         class="flex-shrink-0 px-4 py-1.5 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">
