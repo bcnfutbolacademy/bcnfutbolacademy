@@ -43,7 +43,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body class="bg-gray-50">
 
@@ -174,7 +174,9 @@
                 <div id="step-2" class="step">
                     <div class="bg-white rounded-2xl shadow-sm p-8">
                         <h2 class="text-xl font-bold text-gray-900 mb-2">Choose Your Sessions</h2>
-                        <p class="text-gray-500 font-normal text-sm mb-6">Select your preferred available slots below. A calendar invite will be sent to your email for each session booked.</p>
+                        <p class="text-gray-500 font-normal text-sm mb-2">Select your preferred available slots below. A calendar invite will be sent to your email for each session booked.</p>
+                        <p class="text-gray-500 font-normal text-xs mb-6"><i class="fas fa-clock text-primary mr-1"></i>All times are Kansas City local time.</p>
+                        <p id="validity-note" class="hidden text-sm font-bold text-gray-800 bg-yellow-100 border border-yellow-300 rounded-lg px-3 py-2 mb-6"></p>
 
                         <!-- Player Summary + Sessions Counter -->
                         <div class="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-200 flex items-center justify-between flex-wrap gap-3">
@@ -250,12 +252,12 @@
                         <a href="https://www.instagram.com/bcnfutbolacademy/" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram text-xl"></i></a>
                         <a href="https://www.facebook.com/share/1AAVSxdPpg/?mibextid=wwXIfr" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f text-xl"></i></a>
                         <a href="https://www.linkedin.com/company/bcn-fútbol-academy" class="text-gray-400 hover:text-primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in text-xl"></i></a>
-                        <a href="mailto:bcnfutbolacademy@gmail.com" class="text-gray-400 hover:text-primary"><i class="fas fa-envelope text-xl"></i></a>
+                        <a href="mailto:admin@bcnfutbolacademy.com" class="text-gray-400 hover:text-primary"><i class="fas fa-envelope text-xl"></i></a>
                     </div>
                     <div class="text-sm text-gray-400 font-normal">
                         <p class="mb-1">Instagram: @bcnfutbolacademy</p>
                         <p class="mb-1">Facebook: BCN Fútbol Academy</p>
-                        <p>Email: bcnfutbolacademy@gmail.com</p>
+                        <p>Email: admin@bcnfutbolacademy.com</p>
                     </div>
                 </div>
             </div>
@@ -289,6 +291,31 @@
             'preseason-10':         { name: 'Preseason Lab',       sessions: 10,    price: '$140' },
             'preseason-20':        { name: 'Preseason Lab',       sessions: 20,   price: '$240' },
             'preseason-unlimited': { name: 'Preseason Lab',       sessions: null, price: '$500' },
+            // Individual by location (winter 2026–27) — validDays = must be used within N days of purchase
+            'indhg-4':             { name: 'Individual · Hocker Grove MS (outdoor)',       sessions: 4,  price: '$320', validDays: 30 },
+            'indhg-8':             { name: 'Individual · Hocker Grove MS (outdoor)',       sessions: 8,  price: '$600', validDays: 60 },
+            'indapc-4':            { name: 'Individual · Atletas Performance Center (indoor)', sessions: 4,  price: '$320', validDays: 30 },
+            'indapc-8':            { name: 'Individual · Atletas Performance Center (indoor)', sessions: 8,  price: '$600', validDays: 60 },
+            // Winter Training · Nov 14 2026 – Feb 14 2027
+            'winteru8-6':          { name: 'Winter Competitive U8+',  sessions: 6,    price: '$210' },
+            'winteru8-11':         { name: 'Winter Competitive U8+',  sessions: 11,   price: '$350' },
+            'winteru8-22':         { name: 'Winter Competitive U8+',  sessions: 22,   price: '$660' },
+            'winteru8-unlimited':  { name: 'Winter Competitive U8+',  sessions: null, price: '$950' },
+            'winteru13-6':         { name: 'Winter Competitive U13+', sessions: 6,    price: '$210' },
+            'winteru13-11':        { name: 'Winter Competitive U13+', sessions: 11,   price: '$350' },
+            'winteru13-22':        { name: 'Winter Competitive U13+', sessions: 22,   price: '$660' },
+            'winteru13-unlimited': { name: 'Winter Competitive U13+', sessions: null, price: '$950' },
+            'winterrec-5':         { name: 'Winter Recreational (6–10)', sessions: 5,  price: '$175' },
+            'winterrec-10':        { name: 'Winter Recreational (6–10)', sessions: 10, price: '$300' },
+        };
+
+        // Where each program trains (shown next to every slot)
+        const PROGRAM_LOCATION = {
+            indhg:     () => 'Hocker Grove MS',
+            indapc:    () => 'Atletas Performance Center',
+            winterrec: () => 'Soccer City KC',
+            winteru8:  (d) => d.getDay() === 3 ? 'Soccer City KC' : 'Atletas Performance Center',
+            winteru13: (d) => d.getDay() === 3 ? 'Soccer City KC' : 'Atletas Performance Center',
         };
 
         // ─── URL PARAMS ───────────────────────────────────────────
@@ -300,17 +327,7 @@
 
         let sessionsRemaining = packageInfo.sessions;
         let playerData = {};
-
-        // ─── MOBILE MENU ──────────────────────────────────────────
-        const btn = document.querySelector('.mobile-menu-button');
-        const menuEl = document.querySelector('.mobile-menu');
-        if (btn && menuEl) {
-            btn.addEventListener('click', () => {
-                const open = !menuEl.classList.contains('hidden');
-                menuEl.classList.toggle('hidden');
-                btn.setAttribute('aria-expanded', !open);
-            });
-        }
+        let purchasedAt = null;   // set from Supabase when payment is verified
 
         // ─── HELPERS ──────────────────────────────────────────────
         function setStep(n) {
@@ -337,9 +354,25 @@
         }
 
         function formatSlotTime(iso) {
+            // Always show Kansas City time, whatever the visitor's device is set to
             const d = new Date(iso);
-            return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
-                + ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+            return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'America/Chicago' })
+                + ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago' });
+        }
+
+        function slotLocation(iso) {
+            const fn = PROGRAM_LOCATION[programType];
+            if (!fn) return '';
+            // Day of week in Kansas City time
+            const kc = new Date(new Date(iso).toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+            return fn(kc);
+        }
+
+        function validityDeadline() {
+            if (!packageInfo.validDays) return null;
+            const base = purchasedAt ? new Date(purchasedAt) : new Date();
+            base.setDate(base.getDate() + packageInfo.validDays);
+            return base;
         }
 
         // ─── BANNER INIT ──────────────────────────────────────────
@@ -363,7 +396,7 @@
             }
             try {
                 const res = await fetch(
-                    `${SUPABASE_URL}/rest/v1/bookings?stripe_session_id=eq.${stripeSession}&select=package_key,sessions_remaining,price_paid,email`,
+                    `${SUPABASE_URL}/rest/v1/bookings?stripe_session_id=eq.${stripeSession}&select=package_key,sessions_remaining,price_paid,email,created_at`,
                     { headers: { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON } }
                 );
                 const data = await res.json();
@@ -382,6 +415,7 @@
 
                 const booking = data[0];
                 sessionsRemaining = booking.sessions_remaining;
+                purchasedAt = booking.created_at || null;
 
                 // No sessions left
                 if (sessionsRemaining !== null && sessionsRemaining <= 0) {
@@ -473,6 +507,17 @@
                 const data = await res.json();
                 allSlots = data.slots || [];
 
+                // Packages with a time limit (e.g. 4 sessions within 1 month): hide later dates
+                const deadline = validityDeadline();
+                if (deadline) {
+                    allSlots = allSlots.filter(s => new Date(s.start) <= deadline);
+                    const note = document.getElementById('validity-note');
+                    if (note) {
+                        note.textContent = 'This package can be used until ' + deadline.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/Chicago' }) + '.';
+                        note.classList.remove('hidden');
+                    }
+                }
+
                 if (allSlots.length === 0) {
                     container.innerHTML = '<p class="text-center text-gray-500 font-normal py-8">No available slots at the moment. <a href="contact.html" class="text-primary hover:underline">Contact us</a> to arrange a time.</p>';
                     return;
@@ -496,7 +541,10 @@
 
             container.innerHTML = pageSlots.map(slot => `
                 <div class="slot-card bg-black rounded-xl p-4 flex items-center justify-between gap-4">
-                    <p class="text-white font-bold text-sm">${formatSlotTime(slot.start)}</p>
+                    <div>
+                        <p class="text-white font-bold text-sm">${formatSlotTime(slot.start)}</p>
+                        ${slotLocation(slot.start) ? `<p class="text-gray-400 font-normal text-xs mt-0.5"><i class="fas fa-map-marker-alt text-primary mr-1"></i>${slotLocation(slot.start)}</p>` : ''}
+                    </div>
                     <button onclick="bookSlot('${slot.id}','${slot.start}','${slot.end}',this)"
                         class="flex-shrink-0 px-4 py-1.5 bg-primary hover:bg-green-800 text-white font-bold rounded-full transition duration-300 text-sm">
                         Book

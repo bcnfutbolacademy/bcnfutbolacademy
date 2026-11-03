@@ -476,3 +476,56 @@ body > section.py-16.bg-gray-100 {
     .bg-black.rounded-lg, .bg-black.rounded-xl, .bg-black.rounded-2xl { background: #121212 !important; }
     .partner-card, #about .bg-white.rounded-lg, .bg-gray-100.p-6.rounded-lg, .bg-white.rounded-2xl { background: rgba(255,255,255,.92) !important; }
 }
+
+/* ==========================================================================
+   Program / location selector pages (winter.html, individual-sessions.html)
+   ========================================================================== */
+/* Program selector */
+.seg-btn {
+    display: flex; flex-direction: column; align-items: flex-start; gap: .15rem;
+    text-align: left; padding: 1rem 1.25rem; border-radius: 1rem;
+    background: rgba(10,10,10,.55); border: 2px solid rgba(255,255,255,.18);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    color: #fff; cursor: pointer; transition: border-color .2s, background-color .2s, transform .2s;
+}
+.seg-btn:hover { border-color: rgba(68,155,24,.7); transform: translateY(-1px); }
+.seg-btn[aria-selected="true"] { background: rgba(68,155,24,.9); border-color: #ffdf00; }
+.seg-title { font-size: 1.25rem; font-weight: 800; letter-spacing: -.01em; }
+.seg-sub { font-size: .85rem; font-weight: 400; color: rgba(255,255,255,.85); }
+
+.group-btn {
+    min-width: 6.5rem; padding: .65rem 1.4rem; border-radius: 999px; font-weight: 700; font-size: 1.05rem;
+    background: #fff; color: #111; border: 2px solid #d9dcd4; cursor: pointer; transition: all .2s;
+}
+.group-btn:hover { border-color: #449b18; }
+.group-btn[aria-checked="true"] { background: #449b18; border-color: #449b18; color: #fff; }
+
+.season-facts li {
+    display: flex; align-items: center; gap: .65rem; padding: .7rem .9rem; border-radius: .9rem;
+    background: rgba(10,10,10,.5); border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    font-size: .9rem; color: #f1f1f1;
+}
+.season-facts i { color: #449b18; width: 1.1rem; text-align: center; flex-shrink: 0; }
+.season-facts strong { font-weight: 600; }
+
+.panel-heading { display: flex; align-items: center; gap: .5rem; font-size: 1.15rem; font-weight: 700; color: #111; margin-bottom: 1rem; }
+.panel-heading i { color: #449b18; }
+.program-panel[hidden] { display: none; }
+
+.how-booking { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.how-step { display: flex; align-items: flex-start; gap: .75rem; padding: 1rem 1.1rem; border-radius: 1rem; background: rgba(255,255,255,.7); border: 1px solid rgba(0,0,0,.06); }
+.how-step span { flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 999px; background: #000; color: #ffdf00; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.how-step p { color: #333; font-size: .9rem; margin: 0; }
+@media (max-width: 768px) { .how-booking { grid-template-columns: 1fr; } }
+
+.how-booking-stack { grid-template-columns: 1fr; }
+.time-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.time-chips span {
+    display: inline-block; padding: .45rem .9rem; border-radius: 999px;
+    background: rgba(68,155,24,.18); border: 1px solid rgba(68,155,24,.55);
+    color: #fff; font-weight: 700; font-size: .95rem;
+}
+.open-day { background: rgba(255,255,255,.75); border: 1px solid rgba(0,0,0,.07); border-radius: 1rem; padding: 1rem 1.1rem; }
+.open-day-title { font-weight: 700; color: #111; margin-bottom: .6rem; }
+.time-chips-open span { background: #fff; color: #2f6d10; border-color: rgba(68,155,24,.5); }

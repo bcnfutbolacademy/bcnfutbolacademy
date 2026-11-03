@@ -20,6 +20,31 @@ const STRIPE_LINKS = {
         'unlimited': 'https://buy.stripe.com/8x214meD84iZfKUf8W3AY0a',
         'payg':      'https://buy.stripe.com/7sYfZgcv09Dj6ak1i63AY0f'
     },
+    indhg: {   // Individual · Hocker Grove MS (outdoor)
+        '4': 'https://buy.stripe.com/fZu00i52y2aR7eo5ym3AY0q',
+        '8': 'https://buy.stripe.com/bJebJ08eK2aReGQe4S3AY0r'
+    },
+    indapc: {  // Individual · Atletas Performance Center (indoor)
+        '4': 'https://buy.stripe.com/9B628q52yg1HcyIe4S3AY0s',
+        '8': 'https://buy.stripe.com/fZu14m66C2aR7eo2ma3AY0t'
+    },
+    winteru8: {
+        '6':         'https://buy.stripe.com/8x27sK0MieXD8ise4S3AY0g',
+        '11':        'https://buy.stripe.com/28E00ifHc7vb1U44ui3AY0h',
+        '22':        'https://buy.stripe.com/6oU4gydz4g1HdCMgd03AY0i',
+        'unlimited': 'https://buy.stripe.com/cNi28q0Mig1HgOY6Cq3AY0j'
+    },
+    winteru13: {
+        '6':         'https://buy.stripe.com/5kQbJ08eKaHnaqAf8W3AY0k',
+        '11':        'https://buy.stripe.com/7sY4gy52ycPvcyI0e23AY0l',
+        '22':        'https://buy.stripe.com/fZu3cu7aG9Dj9mw8Ky3AY0m',
+        'unlimited': 'https://buy.stripe.com/bJe3cu66CaHnfKUbWK3AY0n'
+    },
+    winterrec: {
+        '5':  'https://buy.stripe.com/3cIfZg2Uq3eV9mwf8W3AY0o',
+        '10': 'https://buy.stripe.com/bJe9ASgLgbLrgOY9OC3AY0p'
+    },
+    // Retired from the website (kept for reference)
     preseason: {
         '5':         'https://buy.stripe.com/eVq6oG9iOcPv42c2ma3AY0b',
         '10':         'https://buy.stripe.com/aFa7sKeD8bLrbuEaSG3AY0c',
