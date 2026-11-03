@@ -22,11 +22,13 @@ const STRIPE_LINKS = {
     },
     indhg: {   // Individual · Hocker Grove MS (outdoor)
         '4': 'https://buy.stripe.com/fZu00i52y2aR7eo5ym3AY0q',
-        '8': 'https://buy.stripe.com/bJebJ08eK2aReGQe4S3AY0r'
+        '8': 'https://buy.stripe.com/bJebJ08eK2aReGQe4S3AY0r',
+        '12': 'https://buy.stripe.com/fZufZg9iO8zf2Y8aSG3AY0u'
     },
     indapc: {  // Individual · Atletas Performance Center (indoor)
         '4': 'https://buy.stripe.com/9B628q52yg1HcyIe4S3AY0s',
-        '8': 'https://buy.stripe.com/fZu14m66C2aR7eo2ma3AY0t'
+        '8': 'https://buy.stripe.com/fZu14m66C2aR7eo2ma3AY0t',
+        '12': 'https://buy.stripe.com/4gMeVccv002J0Q05ym3AY0v'
     },
     winteru8: {
         '6':         'https://buy.stripe.com/8x27sK0MieXD8ise4S3AY0g',
